@@ -1,0 +1,3666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYBER-GRAMMAR 2084 // 2nd Conditional &amp; Reported Speech</title>
+  <style>
+    /* ==========================================================================
+       RETRO-FUTURISTIC SYNTHWAVE THEME & 18PX CLEAN TYPOGRAPHY
+       ========================================================================== */
+    :root {
+      --bg-void: #070514;
+      --bg-panel: #110b29;
+      --bg-card: #18103b;
+      --bg-input: #0b071d;
+      --neon-cyan: #00f3ff;
+      --neon-magenta: #ff007f;
+      --neon-purple: #9d00ff;
+      --neon-yellow: #ffd700;
+      --neon-green: #39ff14;
+      --neon-red: #ff2a55;
+      --text-main: #f4f6ff;
+      --text-muted: #b5b8e3;
+      --border-cyan: rgba(0, 243, 255, 0.55);
+      --border-magenta: rgba(255, 0, 127, 0.65);
+      --glow-cyan: 0 0 14px rgba(0, 243, 255, 0.55);
+      --glow-magenta: 0 0 16px rgba(255, 0, 127, 0.6);
+      --glow-yellow: 0 0 14px rgba(255, 215, 0, 0.55);
+      --font-display: 'Orbitron', 'Eurostile', 'Bank Gothic', 'Trebuchet MS', sans-serif;
+      --font-body: 'Rajdhani', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      min-height: 100vh;
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 18px; /* 18px base font size */
+      line-height: 1.5;
+      overflow-x: hidden;
+      background-image:
+        linear-gradient(rgba(0, 243, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 127, 0.07) 1px, transparent 1px),
+        radial-gradient(circle at 50% 0%, #24104f 0%, #070514 75%);
+      background-size: 40px 40px, 40px 40px, 100% 100%;
+    }
+
+    /* Subtle CRT scanline overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0px,
+        rgba(255, 255, 255, 0) 3px,
+        rgba(0, 0, 0, 0.16) 4px
+      );
+      z-index: 9999;
+    }
+
+    /* ==========================================================================
+       HEADER & 9-TAB NAVIGATION BAR
+       ========================================================================== */
+    header {
+      background: linear-gradient(180deg, #1b0d42 0%, #0b061f 100%);
+      border-bottom: 2px solid var(--neon-magenta);
+      box-shadow: 0 4px 20px rgba(255, 0, 127, 0.35);
+      padding: 12px 20px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 2px 2px 0px var(--neon-magenta);
+    }
+
+    .status-badge {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      padding: 4px 12px;
+      border: 2px solid var(--neon-yellow);
+      border-radius: 8px;
+      color: var(--neon-yellow);
+      background: rgba(255, 215, 0, 0.1);
+      text-shadow: var(--glow-yellow);
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tab-btn {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-cyan);
+      background: rgba(17, 11, 41, 0.92);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-1px);
+      color: var(--neon-cyan);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.35), rgba(0, 243, 255, 0.28));
+      border-color: var(--neon-yellow);
+      color: var(--neon-yellow);
+      box-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
+    }
+
+    /* ==========================================================================
+       MAIN CONTAINER & SECTIONS
+       ========================================================================== */
+    main {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 22px 20px 50px;
+    }
+
+    .tab-section {
+      display: none;
+      animation: fadeSlideIn 0.3s ease-out;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-header {
+      border-left: 6px solid var(--neon-magenta);
+      padding-left: 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      color: var(--neon-cyan);
+      text-shadow: var(--glow-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       CARDS, GRIDS, & CYBER UI COMPONENTS
+       ========================================================================== */
+    .cyber-card {
+      background: linear-gradient(160deg, var(--bg-card) 0%, var(--bg-panel) 100%);
+      border: 2px solid var(--border-cyan);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .cyber-card.magenta-border {
+      border-color: var(--border-magenta);
+      box-shadow: 0 6px 22px rgba(255, 0, 127, 0.22);
+    }
+
+    .cyber-card.yellow-border {
+      border-color: var(--neon-yellow);
+      box-shadow: 0 6px 22px rgba(255, 215, 0, 0.22);
+    }
+
+    .card-heading {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--neon-yellow);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .formula-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .hl-cyan { color: var(--neon-cyan); font-weight: 700; }
+    .hl-magenta { color: var(--neon-magenta); font-weight: 700; }
+    .hl-yellow { color: var(--neon-yellow); font-weight: 700; }
+    .hl-green { color: var(--neon-green); font-weight: 700; }
+
+    .example-list {
+      list-style: none;
+    }
+
+    .example-list li {
+      padding: 10px 14px;
+      margin-bottom: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 4px solid var(--neon-cyan);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Buttons (18px scale) */
+    .cyber-btn {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 2px solid var(--neon-cyan);
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.2), rgba(0, 120, 255, 0.25));
+      color: var(--neon-cyan);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--glow-cyan);
+      display: inline-block;
+      margin: 4px 6px 4px 0;
+    }
+
+    .cyber-btn:hover {
+      background: var(--neon-cyan);
+      color: #05030d;
+      transform: translateY(-2px);
+    }
+
+    .cyber-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .cyber-btn.magenta {
+      border-color: var(--neon-magenta);
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.28), rgba(157, 0, 255, 0.25));
+      color: #ff7ac0;
+      box-shadow: var(--glow-magenta);
+    }
+
+    .cyber-btn.magenta:hover:not(:disabled) {
+      background: var(--neon-magenta);
+      color: #ffffff;
+    }
+
+    .cyber-btn.yellow {
+      border-color: var(--neon-yellow);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 140, 0, 0.2));
+      color: var(--neon-yellow);
+      box-shadow: var(--glow-yellow);
+    }
+
+    .cyber-btn.yellow:hover:not(:disabled) {
+      background: var(--neon-yellow);
+      color: #070514;
+    }
+
+    /* Form Inputs (18px scale) */
+    input[type="text"], textarea {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background: var(--bg-input);
+      color: var(--neon-cyan);
+      border: 1.5px solid var(--border-cyan);
+      border-radius: 8px;
+      padding: 6px 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="text"]:focus, textarea:focus {
+      border-color: var(--neon-yellow);
+      box-shadow: var(--glow-yellow);
+    }
+
+    .inline-input {
+      width: 210px;
+      max-width: 100%;
+      text-align: center;
+      margin: 3px 5px;
+    }
+
+    .wide-input {
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .input-correct {
+      border-color: var(--neon-green) !important;
+      background: rgba(57, 255, 20, 0.14) !important;
+      color: var(--neon-green) !important;
+    }
+
+    .input-wrong {
+      border-color: var(--neon-red) !important;
+      background: rgba(255, 42, 85, 0.16) !important;
+      color: #ff8da3 !important;
+    }
+
+    .feedback-banner {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .feedback-banner.show {
+      display: block;
+    }
+
+    .feedback-banner.success {
+      background: rgba(57, 255, 20, 0.15);
+      border: 2px solid var(--neon-green);
+      color: var(--neon-green);
+    }
+
+    .feedback-banner.info {
+      background: rgba(0, 243, 255, 0.14);
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
+    /* ==========================================================================
+       TAB 3: MIND MAP WIREFRAME & TIMER
+       ========================================================================== */
+    .timer-display {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      color: var(--neon-yellow);
+      text-shadow: var(--glow-yellow);
+      text-align: center;
+      background: rgba(0, 0, 0, 0.55);
+      border: 2px solid var(--neon-yellow);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 12px 0;
+    }
+
+    .mindmap-diagram {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.38);
+      border: 2px dashed var(--neon-cyan);
+      border-radius: 14px;
+    }
+
+    .mm-center {
+      background: linear-gradient(135deg, var(--neon-magenta), var(--neon-purple));
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.15rem;
+      padding: 12px 26px;
+      border-radius: 50px;
+      border: 2px solid var(--neon-yellow);
+      box-shadow: var(--glow-magenta);
+      text-align: center;
+    }
+
+    .mm-branches {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+    }
+
+    @media (max-width: 850px) {
+      .mm-branches {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .mm-node {
+      background: var(--bg-input);
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .mm-node-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--neon-cyan);
+      margin-bottom: 4px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--neon-green);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       TAB 4: SPEAKING ROULETTE
+       ========================================================================== */
+    .roulette-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    @media (max-width: 950px) {
+      .roulette-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .wheel-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wheel-pointer {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 32px solid var(--neon-yellow);
+      filter: drop-shadow(0 0 8px var(--neon-yellow));
+      z-index: 10;
+    }
+
+    #rouletteCanvas {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      border: 5px solid var(--neon-cyan);
+      box-shadow: 0 0 24px rgba(0, 243, 255, 0.5);
+      background: #0b061f;
+    }
+
+    .selected-question-box {
+      background: linear-gradient(145deg, #210c4a, #0e0826);
+      border: 2px solid var(--neon-yellow);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 0 22px rgba(255, 215, 0, 0.35);
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ==========================================================================
+       ARCADE ARENAS (TAB 5: SPACE SHOOTER & TAB 9: NEON TENSE BREAKER)
+       ========================================================================== */
+    .arcade-wrapper {
+      background: #05030c;
+      border: 2px solid var(--neon-magenta);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 0 26px rgba(255, 0, 127, 0.35);
+    }
+
+    .arcade-wrapper.cyan-arcade {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 26px rgba(0, 243, 255, 0.35);
+    }
+
+    .arcade-hud {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(24, 16, 59, 0.9);
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid var(--border-cyan);
+      background: #04020a;
+    }
+
+    .canvas-container canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Overlay Quiz Modal inside Arcades */
+    .arcade-quiz-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 5, 20, 0.95);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      z-index: 20;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .arcade-quiz-overlay.active {
+      display: flex;
+    }
+
+    .quiz-tag {
+      font-family: var(--font-display);
+      color: var(--neon-cyan);
+      font-size: 0.9rem;
+      letter-spacing: 1.2px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-prompt {
+      font-size: 1.15rem;
+      color: var(--neon-yellow);
+      margin-bottom: 14px;
+      max-width: 850px;
+      font-weight: 700;
+    }
+
+    .quiz-options-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 850px;
+    }
+
+    @media (max-width: 720px) {
+      .quiz-options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quiz-opt-btn {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--neon-cyan);
+      background: rgba(0, 243, 255, 0.14);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.18s;
+      text-align: left;
+    }
+
+    .quiz-opt-btn:hover {
+      background: var(--neon-cyan);
+      color: #05030d;
+      transform: scale(1.01);
+    }
+
+    .arcade-controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    /* ==========================================================================
+       TAB 7: REPORTED SPEECH COMPARISON TABLE
+       ========================================================================== */
+    .cyber-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .cyber-table th, .cyber-table td {
+      border: 1.5px solid var(--border-cyan);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .cyber-table th {
+      background: rgba(255, 0, 127, 0.24);
+      color: var(--neon-yellow);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    .cyber-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* ==========================================================================
+       CUSTOM MESSAGE BOX (NO ALERT/CONFIRM)
+       ========================================================================== */
+    .toast-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #140b36;
+      border: 2px solid var(--neon-yellow);
+      color: var(--neon-yellow);
+      padding: 12px 18px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      font-weight: 700;
+      font-size: 0.95rem;
+      z-index: 9000;
+      display: none;
+      max-width: 520px;
+    }
+
+    .toast-box.show {
+      display: block;
+      animation: fadeSlideIn 0.25s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP NAVIGATION HEADER (9 TABS)
+       ======================================================================== -->
+  <header>
+    <div class="header-top">
+      <div class="brand-title">CYBER-GRAMMAR // SYSTEM 2084</div>
+      <div class="status-badge" id="globalAudioToggle" title="Click to toggle synth sound effects">SOUND: ON</div>
+    </div>
+    <nav class="nav-grid" aria-label="Grammar Modules">
+      <button class="tab-btn active" data-tab="tab1">1. 2ND CONDITIONAL (GRAMMAR)</button>
+      <button class="tab-btn" data-tab="tab2">2. PRACTICE: 2ND CONDITIONAL</button>
+      <button class="tab-btn" data-tab="tab3">3. TASK: MIND MAP</button>
+      <button class="tab-btn" data-tab="tab4">4. SPEAKING ROULETTE</button>
+      <button class="tab-btn" data-tab="tab5">5. ARCADE 1: 2ND CONDITIONAL</button>
+      <button class="tab-btn" data-tab="tab6">6. WRITING: 5 SENTENCES</button>
+      <button class="tab-btn" data-tab="tab7">7. REPORTED SPEECH (GRAMMAR)</button>
+      <button class="tab-btn" data-tab="tab8">8. PRACTICE: REPORTED SPEECH</button>
+      <button class="tab-btn" data-tab="tab9">9. ARCADE 2: REPORTED SPEECH</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         TAB 1: 2ND CONDITIONAL (GRAMMAR)
+         ====================================================================== -->
+    <section id="tab1" class="tab-section active">
+      <div class="section-header">
+        <h1 class="section-title">01 // SECOND CONDITIONAL (GRAMMAR)</h1>
+        <p class="section-subtitle">Unreal, imaginary, or improbable situations in the present or future.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="cyber-card">
+          <h2 class="card-heading">WHEN DO WE USE IT?</h2>
+          <p>We use the <span class="hl-cyan">Second Conditional</span> to talk about:</p>
+          <ul class="example-list" style="margin-top: 12px;">
+            <li><span class="hl-yellow">Imaginary situations</span> in the present (things that are not true right now).</li>
+            <li><span class="hl-magenta">Unlikely dreams</span> or hypothetical events in the future.</li>
+            <li><span class="hl-cyan">Giving advice</span> using the phrase "If I were you...".</li>
+          </ul>
+        </div>
+
+        <div class="cyber-card magenta-border">
+          <h2 class="card-heading">CORE SENTENCE FORMULAS</h2>
+          <p><strong>Standard Order (Comma required):</strong></p>
+          <div class="formula-box">
+            <span class="hl-magenta">IF</span> + Subject + <span class="hl-cyan">Past Simple</span>, Subject + <span class="hl-yellow">would / could / might</span> + <span class="hl-green">Base Verb</span>
+          </div>
+          <p><strong>Inverted Order (No comma):</strong></p>
+          <div class="formula-box">
+            Subject + <span class="hl-yellow">would / could / might</span> + <span class="hl-green">Base Verb</span> + <span class="hl-magenta">if</span> + Subject + <span class="hl-cyan">Past Simple</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cyber-card yellow-border">
+        <h2 class="card-heading">CRITICAL RULE: "WERE" INSTEAD OF "WAS"</h2>
+        <p>In formal and standard Second Conditional sentences, we use <span class="hl-yellow">WERE</span> for <strong>ALL subjects</strong> (I, he, she, it, we, you, they) instead of "was".</p>
+        <div class="formula-box" style="border-color: var(--neon-yellow);">
+          If I <span class="hl-yellow">were</span> you, I <span class="hl-cyan">would accept</span> the mission. (NOT: <del>If I was you</del>)
+        </div>
+      </div>
+
+      <div class="cyber-card">
+        <h2 class="card-heading">STRUCTURAL EXAMPLES</h2>
+        <div class="grid-3">
+          <div>
+            <p class="hl-green">AFFIRMATIVE (+)</p>
+            <ul class="example-list" style="margin-top:8px;">
+              <li>If I <span class="hl-cyan">had</span> a time machine, I <span class="hl-yellow">would visit</span> the year 3000.</li>
+              <li>She <span class="hl-yellow">could buy</span> a spaceship if she <span class="hl-cyan">won</span> the lottery.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="hl-magenta">NEGATIVE (-)</p>
+            <ul class="example-list" style="margin-top:8px;">
+              <li>If they <span class="hl-cyan">didn't live</span> so far away, we <span class="hl-yellow">would see</span> them every day.</li>
+              <li>I <span class="hl-yellow">wouldn't do</span> that if I <span class="hl-cyan">were</span> in your position.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="hl-cyan">INTERROGATIVE (?)</p>
+            <ul class="example-list" style="margin-top:8px;">
+              <li>What <span class="hl-yellow">would</span> you <span class="hl-green">do</span> if you <span class="hl-cyan">found</span> an alien artifact?</li>
+              <li><span class="hl-yellow">Would</span> he <span class="hl-green">travel</span> to Mars if he <span class="hl-cyan">had</span> the chance?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 2: PRACTICE: 2ND CONDITIONAL
+         ====================================================================== -->
+    <section id="tab2" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">02 // PRACTICE: 2ND CONDITIONAL</h1>
+        <p class="section-subtitle">Complete the exercises below and verify your grammar accuracy.</p>
+      </div>
+
+      <!-- PART A: FILL IN THE BLANKS -->
+      <div class="cyber-card">
+        <h2 class="card-heading">SECTION A: FILL IN THE BLANKS (CONJUGATE BOTH VERBS)</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">Use Past Simple in the IF-clause and would + base verb in the result clause. (Use "were" for to be).</p>
+
+        <div id="cond2FillContainer">
+          <div style="margin-bottom: 16px;">
+            1. If I <input type="text" class="inline-input c2-blank" data-ans="won" placeholder="(win)"> the lottery, I <input type="text" class="inline-input c2-blank" data-ans="would travel" placeholder="(travel)"> around the world.
+          </div>
+          <div style="margin-bottom: 16px;">
+            2. If she <input type="text" class="inline-input c2-blank" data-ans="were" placeholder="(be)"> taller, she <input type="text" class="inline-input c2-blank" data-ans="would play" placeholder="(play)"> professional basketball.
+          </div>
+          <div style="margin-bottom: 16px;">
+            3. They <input type="text" class="inline-input c2-blank" data-ans="would buy" placeholder="(buy)"> a bigger house if they <input type="text" class="inline-input c2-blank" data-ans="had" placeholder="(have)"> more money.
+          </div>
+          <div style="margin-bottom: 16px;">
+            4. If we <input type="text" class="inline-input c2-blank" data-ans="didn't have|did not have" placeholder="(not / have)"> school tomorrow, we <input type="text" class="inline-input c2-blank" data-ans="would go" placeholder="(go)"> to the beach.
+          </div>
+          <div style="margin-bottom: 16px;">
+            5. What <input type="text" class="inline-input c2-blank" data-ans="would you do" placeholder="(you / do)"> if you <input type="text" class="inline-input c2-blank" data-ans="saw" placeholder="(see)"> a ghost in your room?
+          </div>
+          <div style="margin-bottom: 16px;">
+            6. He <input type="text" class="inline-input c2-blank" data-ans="wouldn't be|would not be" placeholder="(not / be)"> so tired if he <input type="text" class="inline-input c2-blank" data-ans="went" placeholder="(go)"> to bed earlier.
+          </div>
+        </div>
+
+        <button class="cyber-btn" onclick="checkCond2Blanks()">CHECK ANSWERS</button>
+        <button class="cyber-btn yellow" onclick="revealCond2Blanks()">SHOW ANSWERS</button>
+        <button class="cyber-btn magenta" onclick="resetCond2Blanks()">RESET</button>
+        <div id="cond2BlankFeedback" class="feedback-banner"></div>
+      </div>
+
+      <!-- PART B: COMPLETE THE SENTENCE -->
+      <div class="cyber-card magenta-border">
+        <h2 class="card-heading">SECTION B: COMPLETE THE SENTENCE</h2>
+        <p style="margin-bottom: 16px; color: var(--text-muted);">Finish each hypothetical prompt using <span class="hl-yellow">would / could / might + base verb</span> (or an <span class="hl-cyan">if + past simple</span> clause).</p>
+
+        <div style="margin-bottom: 18px;">
+          <label>1. If I could have any superpower, ...</label>
+          <input type="text" class="wide-input c2-complete" placeholder="Type your completion here...">
+          <div class="sample-ans" style="display:none; color: var(--neon-green); margin-top:6px;">Model Answer: ...I would fly across the galaxy at the speed of light.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label>2. If I were the president of my country, ...</label>
+          <input type="text" class="wide-input c2-complete" placeholder="Type your completion here...">
+          <div class="sample-ans" style="display:none; color: var(--neon-green); margin-top:6px;">Model Answer: ...I would invest more money in science and education.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label>3. I would be extremely surprised if ...</label>
+          <input type="text" class="wide-input c2-complete" placeholder="Type your completion here...">
+          <div class="sample-ans" style="display:none; color: var(--neon-green); margin-top:6px;">Model Answer: ...aliens landed in our schoolyard today.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label>4. If there were no internet for a month, ...</label>
+          <input type="text" class="wide-input c2-complete" placeholder="Type your completion here...">
+          <div class="sample-ans" style="display:none; color: var(--neon-green); margin-top:6px;">Model Answer: ...people would read more books and talk face to face.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label>5. If I spoke five languages fluently, ...</label>
+          <input type="text" class="wide-input c2-complete" placeholder="Type your completion here...">
+          <div class="sample-ans" style="display:none; color: var(--neon-green); margin-top:6px;">Model Answer: ...I could work as an international diplomat.</div>
+        </div>
+
+        <button class="cyber-btn yellow" onclick="toggleCond2Samples()">TOGGLE MODEL ANSWERS</button>
+        <div id="cond2CompFeedback" class="feedback-banner"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 3: TASK - MIND MAP
+         ====================================================================== -->
+    <section id="tab3" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">03 // TASK: SECOND CONDITIONAL MIND MAP</h1>
+        <p class="section-subtitle">Visual synthesis challenge: design a mind map that explains the 2nd Conditional clearly.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="cyber-card">
+          <h2 class="card-heading">MISSION INSTRUCTIONS</h2>
+          <p>Create a detailed, colorful <span class="hl-cyan">Mind Map</span> (in your notebook or on poster paper) that teaches someone how to use the <strong>Second Conditional</strong>.</p>
+          <p style="margin-top: 12px;">Your Mind Map <span class="hl-yellow">MUST</span> include all 6 required branches below. Click each item to track your progress:</p>
+
+          <div style="margin-top: 14px;">
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 1:</strong> Usage &amp; Meaning (Unreal / Hypothetical)</span></label>
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 2:</strong> Affirmative Structure (+ Formula &amp; Example)</span></label>
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 3:</strong> Negative &amp; Question Forms (+ Examples)</span></label>
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 4:</strong> The Special "Were" Rule (I/he/she/it were)</span></label>
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 5:</strong> Clause Order &amp; Comma Rule</span></label>
+            <label class="checklist-item"><input type="checkbox"> <span><strong>Branch 6:</strong> 3 Original Illustrated Examples</span></label>
+          </div>
+        </div>
+
+        <div class="cyber-card yellow-border">
+          <h2 class="card-heading">CLASSROOM COUNTDOWN TIMER</h2>
+          <p style="color: var(--text-muted);">Select mission duration for Mind Map creation:</p>
+          <div class="timer-display" id="mindMapTimer">20:00</div>
+          <div style="text-align: center;">
+            <button class="cyber-btn" onclick="startMindMapTimer()">START</button>
+            <button class="cyber-btn yellow" onclick="pauseMindMapTimer()">PAUSE</button>
+            <button class="cyber-btn magenta" onclick="resetMindMapTimer(20)">20 MIN</button>
+            <button class="cyber-btn" onclick="resetMindMapTimer(15)">15 MIN</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cyber-card magenta-border">
+        <h2 class="card-heading">BLUEPRINT WIREFRAME DIAGRAM</h2>
+        <div class="mindmap-diagram">
+          <div class="mm-center">SECOND CONDITIONAL</div>
+          <div class="mm-branches">
+            <div class="mm-node">
+              <div class="mm-node-title">1. USAGE</div>
+              <div>Unreal present &amp; imaginary future situations.</div>
+            </div>
+            <div class="mm-node">
+              <div class="mm-node-title">2. AFFIRMATIVE</div>
+              <div>If + Past Simple, would + verb.</div>
+            </div>
+            <div class="mm-node">
+              <div class="mm-node-title">3. NEGATIVE &amp; QUESTIONS</div>
+              <div>If + didn't, wouldn't / What would you do if...?</div>
+            </div>
+            <div class="mm-node">
+              <div class="mm-node-title">4. THE "WERE" RULE</div>
+              <div>Use WERE for I / He / She / It.</div>
+            </div>
+            <div class="mm-node">
+              <div class="mm-node-title">5. COMMA RULE</div>
+              <div>Comma after IF-clause; no comma if inverted.</div>
+            </div>
+            <div class="mm-node">
+              <div class="mm-node-title">6. 3 EXAMPLES</div>
+              <div>Draw icons + write 3 original sentences.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 4: SPEAKING ROULETTE
+         ====================================================================== -->
+    <section id="tab4" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">04 // SPEAKING ROULETTE (2ND CONDITIONAL)</h1>
+        <p class="section-subtitle">Spin the cyber-wheel and answer the open-ended Second Conditional prompt in full sentences!</p>
+      </div>
+
+      <div class="roulette-layout">
+        <div class="wheel-wrapper">
+          <div class="wheel-pointer"></div>
+          <canvas id="rouletteCanvas" width="520" height="520"></canvas>
+        </div>
+
+        <div class="selected-question-box">
+          <div>
+            <div class="card-heading" style="color: var(--neon-cyan);">ACTIVE SPEAKING PROMPT (<span id="wheelCountLabel">12</span> REMAINING)</div>
+            <div id="rouletteQuestionText" style="font-size: 1.35rem; font-weight: 700; color: var(--text-main); margin: 14px 0;">
+              Press "SPIN WHEEL" to select a Second Conditional discussion question!
+            </div>
+            <div style="font-size: 0.95rem; color: var(--neon-yellow); font-family: var(--font-mono);">
+              TIP: Start your answer with "If I..., I would..."
+            </div>
+          </div>
+
+          <div style="margin-top: 18px;">
+            <button class="cyber-btn yellow" id="spinWheelBtn" onclick="spinRoulette()">SPIN WHEEL</button>
+            <button class="cyber-btn magenta" id="removeQuestionBtn" onclick="removeCurrentWheelQuestion()" disabled>REMOVE USED QUESTION</button>
+            <button class="cyber-btn" onclick="resetWheelQuestions()">RESET ALL</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 5: ARCADE 1 - 2ND CONDITIONAL SPACE SHOOTER
+         ====================================================================== -->
+    <section id="tab5" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">05 // ARCADE 1: GRAMMAR DEFENDER (2ND CONDITIONAL)</h1>
+        <p class="section-subtitle">100% Dedicated to the Second Conditional! Pilot your starfighter and hit Golden Grammar Beacons to fire the Mega-Laser!</p>
+      </div>
+
+      <div class="arcade-wrapper">
+        <div class="arcade-hud">
+          <div>SCORE: <span class="hl-yellow" id="arcScore">0</span></div>
+          <div>HIGH SCORE: <span class="hl-cyan" id="arcHighScore">0</span></div>
+          <div>WAVE: <span class="hl-magenta" id="arcWave">1</span></div>
+          <div>SHIELDS: <span class="hl-green" id="arcLives">3</span></div>
+          <div>FOCUS: <span class="hl-yellow">2ND CONDITIONAL ONLY</span></div>
+        </div>
+
+        <div class="canvas-container" id="arcadeContainer">
+          <canvas id="arcadeCanvas"></canvas>
+
+          <!-- Multiple Choice Grammar Challenge Modal inside Arcade 1 -->
+          <div class="arcade-quiz-overlay" id="arcadeQuizOverlay">
+            <div class="quiz-tag">2ND CONDITIONAL BEACON // ANSWER TO FIRE MEGA-LASER</div>
+            <div class="quiz-prompt" id="arcQuizQuestion">Question text goes here...</div>
+            <div class="quiz-options-grid" id="arcQuizOptions"></div>
+          </div>
+        </div>
+
+        <div class="arcade-controls-bar">
+          <button class="cyber-btn yellow" onclick="startArcadeGame()">START / RESTART</button>
+          <button class="cyber-btn" onclick="togglePauseArcade1()" id="btnPauseArc1">PAUSE</button>
+          <button class="cyber-btn magenta" onclick="triggerArcadeQuizManual()">SUMMON BEACON</button>
+          <button class="cyber-btn" id="btnMoveLeft" onmousedown="setShipMove(-1)" onmouseup="setShipMove(0)" ontouchstart="setShipMove(-1)" ontouchend="setShipMove(0)">LEFT [A]</button>
+          <button class="cyber-btn" id="btnFireLaser" onclick="firePlayerBullet()">FIRE [SPACE]</button>
+          <button class="cyber-btn" id="btnMoveRight" onmousedown="setShipMove(1)" onmouseup="setShipMove(0)" ontouchstart="setShipMove(1)" ontouchend="setShipMove(0)">RIGHT [D]</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 6: WRITING - 5 SENTENCES
+         ====================================================================== -->
+    <section id="tab6" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">06 // WRITING: 5 ORIGINAL SENTENCES</h1>
+        <p class="section-subtitle">Invent 5 original sentences demonstrating mastery of the Second Conditional.</p>
+      </div>
+
+      <div class="cyber-card">
+        <h2 class="card-heading">WRITING REQUIREMENTS</h2>
+        <p style="color: var(--text-muted); margin-bottom: 18px;">Write one original sentence for each category below. Live structural feedback checks for "if", comma usage, and "would / wouldn't / could".</p>
+
+        <div style="margin-bottom: 18px;">
+          <label class="hl-cyan">1. Affirmative Sentence (IF-clause first + comma):</label>
+          <input type="text" class="wide-input w5-input" data-rule="standard" placeholder="Example: If I had wings, I would fly over the mountains.">
+          <div class="w5-status" style="margin-top: 4px;"></div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="hl-cyan">2. Affirmative Sentence (Inverted Order: Result clause first, no comma):</label>
+          <input type="text" class="wide-input w5-input" data-rule="inverted" placeholder="Example: I would buy an island if I became a billionaire.">
+          <div class="w5-status" style="margin-top: 4px;"></div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="hl-magenta">3. Negative Sentence (Use didn't or wouldn't / couldn't):</label>
+          <input type="text" class="wide-input w5-input" data-rule="negative" placeholder="Example: If I didn't have homework tonight, I would play video games.">
+          <div class="w5-status" style="margin-top: 4px;"></div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="hl-yellow">4. Special "If I were..." Advice or Hypothetical Sentence:</label>
+          <input type="text" class="wide-input w5-input" data-rule="were" placeholder="Example: If I were you, I would study for the grammar quiz.">
+          <div class="w5-status" style="margin-top: 4px;"></div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="hl-green">5. Hypothetical Question (End with a question mark ?):</label>
+          <input type="text" class="wide-input w5-input" data-rule="question" placeholder="Example: What would you do if you met a time traveler?">
+          <div class="w5-status" style="margin-top: 4px;"></div>
+        </div>
+
+        <button class="cyber-btn" onclick="validateFiveSentences()">ANALYZE ALL 5 SENTENCES</button>
+        <button class="cyber-btn yellow" onclick="showProjectionSummary()">PROJECT ALL 5 SENTENCES</button>
+
+        <div id="w5SummaryBox" class="cyber-card yellow-border" style="display:none; margin-top: 20px;">
+          <h3 class="card-heading">CLASSROOM REVIEW PROJECTION</h3>
+          <ol id="w5SummaryList" style="padding-left: 42px;"></ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 7: REPORTED SPEECH (GRAMMAR)
+         ====================================================================== -->
+    <section id="tab7" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">07 // REPORTED SPEECH (GRAMMAR)</h1>
+        <p class="section-subtitle">How to report what someone else said without exact quotation marks by shifting tenses backward.</p>
+      </div>
+
+      <div class="cyber-card">
+        <h2 class="card-heading">THE GOLDEN RULE: TENSE BACKSHIFTING</h2>
+        <p>When the reporting verb (<span class="hl-yellow">said</span> / <span class="hl-yellow">told me</span>) is in the past, the original verb shifts <span class="hl-cyan">one tense backward</span>. Quotation marks (" ") are removed.</p>
+
+        <table class="cyber-table">
+          <thead>
+            <tr>
+              <th>TENSE SHIFT</th>
+              <th>DIRECT SPEECH (EXACT WORDS)</th>
+              <th>REPORTED SPEECH (INDIRECT)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="hl-cyan">Present Simple</span><br>transforms to<br><span class="hl-yellow">Past Simple</span></td>
+              <td>"I <span class="hl-cyan">play</span> soccer every weekend."<br><em>- Leo</em></td>
+              <td>Leo said (that) he <span class="hl-yellow">played</span> soccer every weekend.</td>
+            </tr>
+            <tr>
+              <td><span class="hl-magenta">Present Continuous</span><br>transforms to<br><span class="hl-yellow">Past Continuous</span></td>
+              <td>"I <span class="hl-magenta">am studying</span> cybernetics."<br><em>- Maya</em></td>
+              <td>Maya said (that) she <span class="hl-yellow">was studying</span> cybernetics.</td>
+            </tr>
+            <tr>
+              <td><span class="hl-green">Future (Will)</span><br>transforms to<br><span class="hl-yellow">Would</span></td>
+              <td>"We <span class="hl-green">will call</span> you tomorrow."<br><em>- They</em></td>
+              <td>They said (that) they <span class="hl-yellow">would call</span> me the next day.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="cyber-card magenta-border">
+          <h2 class="card-heading">SAID vs. TOLD RULE</h2>
+          <ul class="example-list">
+            <li>Use <span class="hl-cyan">SAID</span> when there is <strong>NO</strong> personal object:<br><em>He <span class="hl-cyan">said</span> (that) he was tired.</em></li>
+            <li>Use <span class="hl-yellow">TOLD</span> when you specify <strong>WHO</strong> was spoken to:<br><em>He <span class="hl-yellow">told me</span> (that) he was tired.</em></li>
+          </ul>
+        </div>
+
+        <div class="cyber-card yellow-border">
+          <h2 class="card-heading">PRONOUN &amp; TIME / PLACE SHIFTS</h2>
+          <ul class="example-list">
+            <li><span class="hl-cyan">I / we</span> &rarr; <span class="hl-yellow">he / she / they</span> &nbsp;|&nbsp; <span class="hl-cyan">my / our</span> &rarr; <span class="hl-yellow">his / her / their</span></li>
+            <li><span class="hl-magenta">now</span> &rarr; <span class="hl-yellow">then</span> &nbsp;|&nbsp; <span class="hl-magenta">here</span> &rarr; <span class="hl-yellow">there</span></li>
+            <li><span class="hl-magenta">today</span> &rarr; <span class="hl-yellow">that day</span> &nbsp;|&nbsp; <span class="hl-magenta">tomorrow</span> &rarr; <span class="hl-yellow">the next day</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 8: PRACTICE: REPORTED SPEECH
+         ====================================================================== -->
+    <section id="tab8" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">08 // PRACTICE: REPORTED SPEECH</h1>
+        <p class="section-subtitle">Convert Direct Speech into Reported Speech using Present &rarr; Past, Present Continuous &rarr; Past Continuous, and Will &rarr; Would.</p>
+      </div>
+
+      <!-- SECTION A: FILL IN THE BLANKS -->
+      <div class="cyber-card">
+        <h2 class="card-heading">SECTION A: FILL IN THE BLANKS (BACKSHIFT THE VERB)</h2>
+
+        <div style="margin-bottom: 14px;">
+          1. Direct: "I <strong>like</strong> sci-fi movies."<br>
+          Reported: Tom said that he <input type="text" class="inline-input rs-blank" data-ans="liked" placeholder="verb"> sci-fi movies.
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          2. Direct: "We <strong>are working</strong> on the robot."<br>
+          Reported: They said that they <input type="text" class="inline-input rs-blank" data-ans="were working" placeholder="verb phrase"> on the robot.
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          3. Direct: "I <strong>will help</strong> you with the project."<br>
+          Reported: Sarah told me that she <input type="text" class="inline-input rs-blank" data-ans="would help" placeholder="verb phrase"> me with the project.
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          4. Direct: "She <strong>doesn't eat</strong> meat."<br>
+          Reported: He said that she <input type="text" class="inline-input rs-blank" data-ans="didn't eat|did not eat" placeholder="verb phrase"> meat.
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          5. Direct: "I <strong>am listening</strong> to synthwave music."<br>
+          Reported: Alex said that he <input type="text" class="inline-input rs-blank" data-ans="was listening" placeholder="verb phrase"> to synthwave music.
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          6. Direct: "The train <strong>will arrive</strong> at 8:00 PM."<br>
+          Reported: The announcer said that the train <input type="text" class="inline-input rs-blank" data-ans="would arrive" placeholder="verb phrase"> at 8:00 PM.
+        </div>
+
+        <button class="cyber-btn" onclick="checkRSBlanks()">CHECK ANSWERS</button>
+        <button class="cyber-btn yellow" onclick="revealRSBlanks()">SHOW ANSWERS</button>
+        <button class="cyber-btn magenta" onclick="resetRSBlanks()">RESET</button>
+        <div id="rsBlankFeedback" class="feedback-banner"></div>
+      </div>
+
+      <!-- SECTION B: COMPLETE THE REPORTED SENTENCE -->
+      <div class="cyber-card magenta-border">
+        <h2 class="card-heading">SECTION B: COMPLETE THE REPORTED SPEECH SENTENCE</h2>
+        <p style="color: var(--text-muted); margin-bottom: 14px;">Transform the rest of the sentence accurately (remember pronouns, tenses, and time words).</p>
+
+        <div style="margin-bottom: 14px;">
+          <div>1. Direct: <strong>"I am watching a movie now."</strong></div>
+          <div>Reported: Maria said that she <input type="text" class="inline-input rs-complete" style="width: 340px;" data-ans="was watching a movie then|was watching a movie|was watching a movie at that moment" placeholder="complete the sentence..."></div>
+          <div class="rs-model-ans" style="display:none; color: var(--neon-green); margin-top:4px;">Model Answer: ...was watching a movie then.</div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <div>2. Direct: <strong>"I will buy a new laptop."</strong></div>
+          <div>Reported: David said that he <input type="text" class="inline-input rs-complete" style="width: 340px;" data-ans="would buy a new laptop" placeholder="complete the sentence..."></div>
+          <div class="rs-model-ans" style="display:none; color: var(--neon-green); margin-top:4px;">Model Answer: ...would buy a new laptop.</div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <div>3. Direct: <strong>"We live in Tokyo."</strong></div>
+          <div>Reported: Elena and Ken told me that they <input type="text" class="inline-input rs-complete" style="width: 340px;" data-ans="lived in tokyo" placeholder="complete the sentence..."></div>
+          <div class="rs-model-ans" style="display:none; color: var(--neon-green); margin-top:4px;">Model Answer: ...lived in Tokyo.</div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <div>4. Direct: <strong>"My brother is playing guitar."</strong></div>
+          <div>Reported: Lucas said that his brother <input type="text" class="inline-input rs-complete" style="width: 340px;" data-ans="was playing guitar|was playing the guitar" placeholder="complete the sentence..."></div>
+          <div class="rs-model-ans" style="display:none; color: var(--neon-green); margin-top:4px;">Model Answer: ...was playing guitar.</div>
+        </div>
+
+        <div style="margin-bottom: 14px;">
+          <div>5. Direct: <strong>"I will send the message today."</strong></div>
+          <div>Reported: Chloe said that she <input type="text" class="inline-input rs-complete" style="width: 340px;" data-ans="would send the message that day|would send the message" placeholder="complete the sentence..."></div>
+          <div class="rs-model-ans" style="display:none; color: var(--neon-green); margin-top:4px;">Model Answer: ...would send the message that day.</div>
+        </div>
+
+        <button class="cyber-btn yellow" onclick="checkRSCompletions()">CHECK SECTION B</button>
+        <button class="cyber-btn" onclick="toggleRSModelAnswers()">TOGGLE MODEL ANSWERS</button>
+        <div id="rsCompFeedback" class="feedback-banner"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TAB 9: ARCADE 2 - NEON TENSE BREAKER 2084 (REPORTED SPEECH BRICK BREAKER)
+         ====================================================================== -->
+    <section id="tab9" class="tab-section">
+      <div class="section-header">
+        <h1 class="section-title">09 // ARCADE 2: NEON TENSE BREAKER 2084 (REPORTED SPEECH)</h1>
+        <p class="section-subtitle">Cyber Brick-Breaker Arena! Bounce the Plasma Orb to shatter neon bricks. Hit Gold Grammar Core Bricks to answer Reported Speech challenges and trigger Cyber Shockwaves!</p>
+      </div>
+
+      <div class="arcade-wrapper cyan-arcade">
+        <div class="arcade-hud">
+          <div>SCORE: <span class="hl-yellow" id="bbScore">0</span></div>
+          <div>HIGH SCORE: <span class="hl-cyan" id="bbHighScore">0</span></div>
+          <div>STAGE: <span class="hl-magenta" id="bbLevel">1/5 - NEON PERIMETER</span></div>
+          <div>LIVES: <span class="hl-green" id="bbLives">3</span></div>
+          <div>FOCUS: <span class="hl-cyan">REPORTED SPEECH</span></div>
+        </div>
+
+        <div class="canvas-container" id="breakerContainer">
+          <canvas id="breakerCanvas"></canvas>
+
+          <!-- Multiple Choice Reported Speech Modal inside Arcade 2 -->
+          <div class="arcade-quiz-overlay" id="breakerQuizOverlay">
+            <div class="quiz-tag" id="bbQuizTierTag">REPORTED SPEECH CORE // ANSWER TO TRIGGER CYBER SHOCKWAVE</div>
+            <div class="quiz-prompt" id="bbQuizQuestion">Reported speech challenge appears here...</div>
+            <div class="quiz-options-grid" id="bbQuizOptions"></div>
+          </div>
+        </div>
+
+        <div class="arcade-controls-bar">
+          <button class="cyber-btn yellow" onclick="startBreakerGame(1)">START / RESTART</button>
+          <button class="cyber-btn" onclick="launchBreakerBall()">LAUNCH ORB [SPACE]</button>
+          <button class="cyber-btn magenta" onclick="triggerBreakerQuizManual()">TRIGGER GRAMMAR CORE</button>
+          <button class="cyber-btn" onclick="cycleBreakerStage()">NEXT STAGE [1-5]</button>
+          <button class="cyber-btn" onmousedown="setPaddleMove(-1)" onmouseup="setPaddleMove(0)" ontouchstart="setPaddleMove(-1)" ontouchend="setPaddleMove(0)">PADDLE LEFT [A]</button>
+          <button class="cyber-btn" onmousedown="setPaddleMove(1)" onmouseup="setPaddleMove(0)" ontouchstart="setPaddleMove(1)" ontouchend="setPaddleMove(0)">PADDLE RIGHT [D]</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Custom Non-Blocking Toast Notification -->
+  <div id="toastBox" class="toast-box"></div>
+
+  <!-- ========================================================================
+       JAVASCRIPT ENGINE: AUDIO SYNTH, NAVIGATION, EXERCISES, ROULETTE, 2 ARCADES
+       ======================================================================== -->
+  <script>
+    /* ========================================================================
+       1. WEB AUDIO API RETRO SYNTHESIZER (ZERO EXTERNAL ASSETS)
+       ======================================================================== */
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          audioCtx = new AudioContext();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTone(freq, type = 'sawtooth', duration = 0.12, volume = 0.12) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        // Audio gracefully ignored if blocked
+      }
+    }
+
+    function playSuccessChime() {
+      playTone(523.25, 'square', 0.1, 0.1);
+      setTimeout(() => playTone(659.25, 'square', 0.1, 0.1), 90);
+      setTimeout(() => playTone(783.99, 'square', 0.18, 0.12), 180);
+    }
+
+    function playErrorBuzz() {
+      playTone(160, 'sawtooth', 0.18, 0.14);
+      setTimeout(() => playTone(120, 'sawtooth', 0.22, 0.14), 140);
+    }
+
+    document.getElementById('globalAudioToggle').addEventListener('click', function () {
+      soundEnabled = !soundEnabled;
+      this.textContent = soundEnabled ? 'SOUND: ON' : 'SOUND: OFF';
+      if (soundEnabled) playTone(660, 'sine', 0.1, 0.1);
+    });
+
+    function showToast(msg) {
+      const box = document.getElementById('toastBox');
+      box.textContent = msg;
+      box.classList.add('show');
+      clearTimeout(box._timer);
+      box._timer = setTimeout(() => {
+        box.classList.remove('show');
+      }, 4200);
+    }
+
+    /* ========================================================================
+       2. 9-TAB NAVIGATION CONTROLLER
+       ======================================================================== */
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabSections = document.querySelectorAll('.tab-section');
+
+    tabButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        playTone(440, 'triangle', 0.08, 0.09);
+        const targetId = btn.getAttribute('data-tab');
+
+        tabButtons.forEach((b) => b.classList.remove('active'));
+        tabSections.forEach((s) => s.classList.remove('active'));
+
+        btn.classList.add('active');
+        document.getElementById(targetId).classList.add('active');
+
+        if (targetId === 'tab4') {
+          drawRouletteWheel();
+        } else if (targetId === 'tab5') {
+          resizeArcadeCanvas();
+        } else if (targetId === 'tab9') {
+          resizeBreakerCanvas();
+        }
+      });
+    });
+
+    /* ========================================================================
+       3. TAB 2: PRACTICE 2ND CONDITIONAL LOGIC
+       ======================================================================== */
+    function normalizeText(str) {
+      return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.!?]+$/, '');
+    }
+
+    function checkCond2Blanks() {
+      const inputs = document.querySelectorAll('.c2-blank');
+      let correctCount = 0;
+
+      inputs.forEach((inp) => {
+        const userVal = normalizeText(inp.value);
+        const validOptions = inp.getAttribute('data-ans').split('|').map(normalizeText);
+        inp.classList.remove('input-correct', 'input-wrong');
+
+        if (validOptions.includes(userVal)) {
+          inp.classList.add('input-correct');
+          correctCount++;
+        } else {
+          inp.classList.add('input-wrong');
+        }
+      });
+
+      const fb = document.getElementById('cond2BlankFeedback');
+      fb.className = 'feedback-banner show ' + (correctCount === inputs.length ? 'success' : 'info');
+      fb.textContent = `SCORE: ${correctCount} / ${inputs.length} CORRECT. ${
+        correctCount === inputs.length
+          ? 'EXCELLENT! ALL SECOND CONDITIONAL FORMS ARE ACCURATE.'
+          : 'CHECK THE RED BOXES: REMEMBER PAST SIMPLE IN IF-CLAUSES AND WOULD + BASE VERB IN RESULT CLAUSES.'
+      }`;
+
+      if (correctCount === inputs.length) playSuccessChime();
+      else playErrorBuzz();
+    }
+
+    function revealCond2Blanks() {
+      document.querySelectorAll('.c2-blank').forEach((inp) => {
+        inp.value = inp.getAttribute('data-ans').split('|')[0];
+        inp.classList.remove('input-wrong');
+        inp.classList.add('input-correct');
+      });
+      playSuccessChime();
+    }
+
+    function resetCond2Blanks() {
+      document.querySelectorAll('.c2-blank').forEach((inp) => {
+        inp.value = '';
+        inp.classList.remove('input-correct', 'input-wrong');
+      });
+      document.getElementById('cond2BlankFeedback').classList.remove('show');
+      playTone(330, 'sine', 0.08, 0.08);
+    }
+
+    let cond2SamplesVisible = false;
+    function toggleCond2Samples() {
+      cond2SamplesVisible = !cond2SamplesVisible;
+      const samples = document.querySelectorAll('.sample-ans');
+      samples.forEach((el) => {
+        el.style.display = cond2SamplesVisible ? 'block' : 'none';
+      });
+      playTone(540, 'triangle', 0.09, 0.09);
+    }
+
+    /* ========================================================================
+       4. TAB 3: MIND MAP COUNTDOWN TIMER
+       ======================================================================== */
+    let mmSecondsLeft = 20 * 60;
+    let mmTimerInterval = null;
+
+    function updateMindMapTimerDisplay() {
+      const mins = Math.floor(mmSecondsLeft / 60);
+      const secs = mmSecondsLeft % 60;
+      document.getElementById('mindMapTimer').textContent =
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function startMindMapTimer() {
+      if (mmTimerInterval) return;
+      playTone(520, 'triangle', 0.1, 0.1);
+      mmTimerInterval = setInterval(() => {
+        if (mmSecondsLeft > 0) {
+          mmSecondsLeft--;
+          updateMindMapTimerDisplay();
+        } else {
+          clearInterval(mmTimerInterval);
+          mmTimerInterval = null;
+          playSuccessChime();
+          showToast('TIME IS UP! PREPARE TO PRESENT YOUR MIND MAPS.');
+        }
+      }, 1000);
+    }
+
+    function pauseMindMapTimer() {
+      clearInterval(mmTimerInterval);
+      mmTimerInterval = null;
+      playTone(300, 'triangle', 0.1, 0.1);
+    }
+
+    function resetMindMapTimer(minutes) {
+      pauseMindMapTimer();
+      mmSecondsLeft = minutes * 60;
+      updateMindMapTimerDisplay();
+      playTone(440, 'sine', 0.08, 0.08);
+    }
+
+    /* ========================================================================
+       5. TAB 4: SPEAKING ROULETTE CANVAS WHEEL
+       ======================================================================== */
+    const initialWheelQuestions = [
+      'What would you do if you were invisible for 24 hours?',
+      'If you could live in any historical era, which would you choose?',
+      'If you met your favorite celebrity, what would you say?',
+      'What would you buy first if you won 10 million dollars?',
+      'If you could have any superpower, how would you use it?',
+      'Where would you travel if flights were completely free?',
+      'If you were the principal of this school, what rule would you change?',
+      'What would happen if animals could suddenly speak English?',
+      'If you could master any skill instantly, what would it be?',
+      'What would you do if you found a wallet full of cash?',
+      'If you lived on Mars, what would you miss most about Earth?',
+      'If you could talk to your future self, what would you ask?'
+    ];
+
+    let activeWheelQuestions = [...initialWheelQuestions];
+    let wheelAngle = 0;
+    let isSpinning = false;
+    let lastSelectedIndex = -1;
+
+    const wheelColors = [
+      '#ff007f', '#00b8d4', '#6a00f4', '#d500f9',
+      '#00838f', '#c51162', '#304ffe', '#00bfa5',
+      '#aa00ff', '#ff4081', '#0277bd', '#6200ea'
+    ];
+
+    function drawRouletteWheel() {
+      const canvas = document.getElementById('rouletteCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const radius = cx - 12;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const count = activeWheelQuestions.length;
+      document.getElementById('wheelCountLabel').textContent = count;
+
+      if (count === 0) {
+        ctx.fillStyle = '#18103b';
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('ALL QUESTIONS COMPLETED!', cx, cy);
+        return;
+      }
+
+      const sliceAngle = (Math.PI * 2) / count;
+
+      for (let i = 0; i < count; i++) {
+        const start = wheelAngle + i * sliceAngle;
+        const end = start + sliceAngle;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, radius, start, end);
+        ctx.closePath();
+        ctx.fillStyle = wheelColors[i % wheelColors.length];
+        ctx.fill();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = '#070514';
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(start + sliceAngle / 2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 20px sans-serif';
+        const shortLabel = `Q${i + 1}: ` + activeWheelQuestions[i].slice(0, 16) + '...';
+        ctx.fillText(shortLabel, radius - 22, 7);
+        ctx.restore();
+      }
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, 42, 0, Math.PI * 2);
+      ctx.fillStyle = '#070514';
+      ctx.fill();
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#ffd700';
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffd700';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('SPIN', cx, cy + 6);
+    }
+
+    function spinRoulette() {
+      if (isSpinning) return;
+      if (activeWheelQuestions.length === 0) {
+        showToast('NO QUESTIONS LEFT. CLICK "RESET ALL" TO RELOAD.');
+        return;
+      }
+
+      isSpinning = true;
+      document.getElementById('removeQuestionBtn').disabled = true;
+
+      const spinDuration = 3400;
+      const startAngle = wheelAngle;
+      const extraRotations = (5 + Math.random() * 4) * Math.PI * 2;
+      const startTime = performance.now();
+      let lastTickSlice = -1;
+
+      function animateWheel(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / spinDuration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        wheelAngle = startAngle + extraRotations * easeOut;
+
+        const count = activeWheelQuestions.length;
+        const sliceAngle = (Math.PI * 2) / count;
+        const pointerAngle = (Math.PI * 1.5 - (wheelAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const currentSlice = Math.floor(pointerAngle / sliceAngle) % count;
+
+        if (currentSlice !== lastTickSlice) {
+          playTone(580 + (currentSlice * 25), 'triangle', 0.04, 0.07);
+          lastTickSlice = currentSlice;
+        }
+
+        drawRouletteWheel();
+
+        if (progress < 1) {
+          requestAnimationFrame(animateWheel);
+        } else {
+          isSpinning = false;
+          lastSelectedIndex = currentSlice;
+          document.getElementById('rouletteQuestionText').textContent = activeWheelQuestions[lastSelectedIndex];
+          document.getElementById('removeQuestionBtn').disabled = false;
+          playSuccessChime();
+        }
+      }
+
+      requestAnimationFrame(animateWheel);
+    }
+
+    function removeCurrentWheelQuestion() {
+      if (lastSelectedIndex >= 0 && lastSelectedIndex < activeWheelQuestions.length) {
+        activeWheelQuestions.splice(lastSelectedIndex, 1);
+        lastSelectedIndex = -1;
+        document.getElementById('removeQuestionBtn').disabled = true;
+        document.getElementById('rouletteQuestionText').textContent =
+          'Question removed! Press "SPIN WHEEL" for the next student.';
+        drawRouletteWheel();
+        playTone(300, 'sawtooth', 0.1, 0.09);
+      }
+    }
+
+    function resetWheelQuestions() {
+      activeWheelQuestions = [...initialWheelQuestions];
+      lastSelectedIndex = -1;
+      document.getElementById('removeQuestionBtn').disabled = true;
+      document.getElementById('rouletteQuestionText').textContent =
+        'All 12 questions restored! Press "SPIN WHEEL" to begin.';
+      drawRouletteWheel();
+      playSuccessChime();
+    }
+
+    /* ========================================================================
+       6. TAB 5: ARCADE 1 — GRAMMAR DEFENDER (100% 2ND CONDITIONAL ONLY)
+       ======================================================================== */
+    const cond2ArcadeQuestions = [
+      {
+        q: 'If I _____ a spaceship, I would explore the Andromeda galaxy.',
+        opts: ['have', 'had', 'will have', 'having'],
+        ans: 1,
+        exp: 'Rule: IF + Past Simple ("had"), WOULD + Base Verb.'
+      },
+      {
+        q: 'If I _____ you, I would accept that scholarship immediately.',
+        opts: ['am', 'was', 'were', 'be'],
+        ans: 2,
+        exp: 'Rule: Always use "WERE" instead of "was" in formal 2nd Conditional.'
+      },
+      {
+        q: 'What _____ you do if you found a mysterious glowing key?',
+        opts: ['will', 'would', 'did', 'have'],
+        ans: 1,
+        exp: 'Rule: Question form uses "WOULD + subject + base verb".'
+      },
+      {
+        q: 'She _____ travel the world if she had enough free time.',
+        opts: ['could', 'can', 'will', 'must'],
+        ans: 0,
+        exp: 'Rule: "Could" expresses hypothetical ability in the result clause.'
+      },
+      {
+        q: 'If they _____ live so far away, we would visit them every Sunday.',
+        opts: ['don\'t', 'won\'t', 'didn\'t', 'weren\'t'],
+        ans: 2,
+        exp: 'Rule: Negative Past Simple in IF-clause uses "didn\'t + base verb".'
+      },
+      {
+        q: 'If he _____ harder, he would pass the robotics exam.',
+        opts: ['studies', 'studied', 'will study', 'study'],
+        ans: 1,
+        exp: 'Rule: Use Past Simple ("studied") after "If".'
+      },
+      {
+        q: 'We wouldn\'t be late if the traffic _____ so terrible.',
+        opts: ['isn\'t', 'wasn\'t', 'weren\'t', 'won\'t be'],
+        ans: 2,
+        exp: 'Rule: Use "weren\'t" for hypothetical states in the 2nd Conditional.'
+      },
+      {
+        q: 'If animals _____ speak, what would they tell humans?',
+        opts: ['can', 'could', 'will', 'are'],
+        ans: 1,
+        exp: 'Rule: "Could" is the Past Simple form of "can" for unreal situations.'
+      },
+      {
+        q: 'I _____ buy a cyber-bike if I saved enough credits.',
+        opts: ['will', 'would', 'am', 'did'],
+        ans: 1,
+        exp: 'Rule: Result clause requires "would + base verb (buy)".'
+      },
+      {
+        q: 'If she _____ a millionaire, she would build a clean-energy city.',
+        opts: ['were', 'is', 'will be', 'has been'],
+        ans: 0,
+        exp: 'Rule: Use "were" with "she" in hypothetical 2nd Conditional clauses.'
+      },
+      {
+        q: 'Where would you live if you _____ choose any planet?',
+        opts: ['can', 'will', 'could', 'have'],
+        ans: 2,
+        exp: 'Rule: IF-clause requires Past Simple modal "could".'
+      },
+      {
+        q: 'If we _____ a time machine, we wouldn\'t change history.',
+        opts: ['owned', 'own', 'will own', 'owning'],
+        ans: 0,
+        exp: 'Rule: IF + Past Simple ("owned"), result + "wouldn\'t + verb".'
+      },
+      {
+        q: 'He _____ help you if he knew the secret password.',
+        opts: ['will', 'might', 'shall', 'does'],
+        ans: 1,
+        exp: 'Rule: "Might" can replace "would" to show hypothetical possibility.'
+      },
+      {
+        q: 'If I _____ the answer, I would tell you right now.',
+        opts: ['know', 'knew', 'known', 'will know'],
+        ans: 1,
+        exp: 'Rule: Past Simple of "know" is "knew".'
+      },
+      {
+        q: 'They would adopt a robot dog if their apartment _____ bigger.',
+        opts: ['is', 'were', 'will be', 'has'],
+        ans: 1,
+        exp: 'Rule: Use "were" for singular unreal conditions.'
+      },
+      {
+        q: 'If you _____ a superhero, what would your name be?',
+        opts: ['are', 'were', 'will be', 'have been'],
+        ans: 1,
+        exp: 'Rule: IF + subject + "were" for imaginary identities.'
+      },
+      {
+        q: 'If my brother _____ in Tokyo, I would visit him every summer.',
+        opts: ['lives', 'lived', 'will live', 'living'],
+        ans: 1,
+        exp: 'Rule: Use Past Simple ("lived") in the hypothetical IF-clause.'
+      },
+      {
+        q: 'You _____ feel much healthier if you slept eight hours a night.',
+        opts: ['would', 'will', 'can', 'did'],
+        ans: 0,
+        exp: 'Rule: Result clause uses "would + base verb (feel)".'
+      },
+      {
+        q: 'If it _____ snowing right now, we could go skiing in the mountains.',
+        opts: ['is', 'were', 'will be', 'has been'],
+        ans: 1,
+        exp: 'Rule: Use "were" for an unreal present condition.'
+      },
+      {
+        q: 'Who _____ you call if you got lost in a strange city?',
+        opts: ['will', 'would', 'do', 'are'],
+        ans: 1,
+        exp: 'Rule: Interrogative 2nd Conditional uses "would + subject + base verb".'
+      },
+      {
+        q: 'If I _____ how to play the violin, I would join the orchestra.',
+        opts: ['know', 'knew', 'will know', 'am knowing'],
+        ans: 1,
+        exp: 'Rule: Past Simple ("knew") expresses an unreal present skill.'
+      },
+      {
+        q: 'They _____ cancel the concert unless the weather were dangerous.',
+        opts: ['won\'t', 'wouldn\'t', 'didn\'t', 'aren\'t'],
+        ans: 1,
+        exp: 'Rule: Negative hypothetical result uses "wouldn\'t + base verb".'
+      },
+      {
+        q: 'If humans _____ on Mars, they would need pressurized domes.',
+        opts: ['colonize', 'colonized', 'will colonize', 'colonizing'],
+        ans: 1,
+        exp: 'Rule: IF + Past Simple ("colonized") for future hypotheticals.'
+      },
+      {
+        q: 'What would happen if gravity suddenly _____ for ten seconds?',
+        opts: ['disappears', 'disappeared', 'will disappear', 'disappear'],
+        ans: 1,
+        exp: 'Rule: Past Simple ("disappeared") follows "if" in imaginary scenarios.'
+      },
+      {
+        q: 'If she _____ afraid of heights, she would try skydiving.',
+        opts: ['isn\'t', 'weren\'t', 'won\'t be', 'hasn\'t been'],
+        ans: 1,
+        exp: 'Rule: Negative "to be" in 2nd Conditional takes "weren\'t".'
+      },
+      {
+        q: 'I would write a sci-fi novel if I _____ more patience.',
+        opts: ['have', 'had', 'will have', 'am having'],
+        ans: 1,
+        exp: 'Rule: Inverted clause order still uses Past Simple ("had") after "if".'
+      },
+      {
+        q: 'If you _____ a famous scientist, what would you invent first?',
+        opts: ['are', 'were', 'will be', 'was'],
+        ans: 1,
+        exp: 'Rule: Use "were" with "you" in hypothetical identity clauses.'
+      },
+      {
+        q: 'We _____ reach the summit faster if we had better gear.',
+        opts: ['could', 'can', 'will', 'shall'],
+        ans: 0,
+        exp: 'Rule: "Could" indicates hypothetical ability in the main clause.'
+      },
+      {
+        q: 'If my phone _____ waterproof, I would take underwater photos.',
+        opts: ['is', 'were', 'will be', 'has been'],
+        ans: 1,
+        exp: 'Rule: Singular subject "my phone" takes "were" in 2nd Conditional.'
+      },
+      {
+        q: 'He wouldn\'t complain so much if he _____ our workload.',
+        opts: ['understands', 'understood', 'will understand', 'understand'],
+        ans: 1,
+        exp: 'Rule: Past Simple of "understand" is "understood".'
+      },
+      {
+        q: 'If you _____ an alien spacecraft, would you step inside?',
+        opts: ['see', 'saw', 'seen', 'will see'],
+        ans: 1,
+        exp: 'Rule: Past Simple of "see" is "saw".'
+      },
+      {
+        q: 'She _____ be thrilled if you invited her to the cyber-expo.',
+        opts: ['will', 'would', 'is', 'does'],
+        ans: 1,
+        exp: 'Rule: Result clause requires "would + be".'
+      },
+      {
+        q: 'If we _____ electricity for a week, how would we cook dinner?',
+        opts: ['don\'t have', 'didn\'t have', 'won\'t have', 'haven\'t'],
+        ans: 1,
+        exp: 'Rule: Negative Past Simple of "have" is "didn\'t have".'
+      },
+      {
+        q: 'I _____ lend you my hoverboard if you promised to be careful.',
+        opts: ['will', 'might', 'can', 'am'],
+        ans: 1,
+        exp: 'Rule: "Might" expresses conditional willingness/possibility.'
+      },
+      {
+        q: 'If the library _____ open at midnight, I would study there.',
+        opts: ['is', 'were', 'will be', 'was'],
+        ans: 1,
+        exp: 'Rule: Use "were" in hypothetical IF-clauses.'
+      },
+      {
+        q: 'What language _____ you learn if you moved to Europe?',
+        opts: ['will', 'would', 'do', 'have'],
+        ans: 1,
+        exp: 'Rule: Question structure uses "would + subject + base verb".'
+      }
+    ];
+
+    /* Non-Repeating Shuffle-Bag Queue Helper */
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function prepareShuffledQuestion(qObj) {
+      const taggedOpts = qObj.opts.map((text, idx) => ({
+        text,
+        isCorrect: idx === qObj.ans
+      }));
+      const shuffledOpts = shuffleArray(taggedOpts);
+      const letters = ['A) ', 'B) ', 'C) ', 'D) '];
+      return {
+        q: qObj.q,
+        exp: qObj.exp,
+        tier: qObj.tier || 1,
+        opts: shuffledOpts.map((item, i) => letters[i] + item.text),
+        ans: shuffledOpts.findIndex((item) => item.isCorrect)
+      };
+    }
+
+    let cond2QuestionDeck = [];
+
+    function drawNextCond2Question() {
+      if (cond2QuestionDeck.length === 0) {
+        cond2QuestionDeck = shuffleArray(cond2ArcadeQuestions.map((_, idx) => idx));
+      }
+      const nextIdx = cond2QuestionDeck.pop();
+      return prepareShuffledQuestion(cond2ArcadeQuestions[nextIdx]);
+    }
+
+    let arcState = {
+      running: false,
+      pausedForQuiz: false,
+      manualPaused: false,
+      score: 0,
+      highScore: 0,
+      wave: 1,
+      lives: 3,
+      shipX: 300,
+      shipMoveDir: 0,
+      bullets: [],
+      enemies: [],
+      particles: [],
+      megaLaserTimer: 0,
+      enemiesDestroyedSinceQuiz: 0,
+      lastFrameTime: 0
+    };
+
+    const keysPressed = {};
+
+    window.addEventListener('keydown', (e) => {
+      keysPressed[e.code] = true;
+      if (document.getElementById('tab5').classList.contains('active')) {
+        if (e.code === 'Space' && arcState.running && !arcState.pausedForQuiz && !arcState.manualPaused) {
+          e.preventDefault();
+          firePlayerBullet();
+        }
+      }
+      if (document.getElementById('tab9').classList.contains('active')) {
+        if (e.code === 'Space' && bbState.running && !bbState.pausedForQuiz) {
+          e.preventDefault();
+          launchBreakerBall();
+        }
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      keysPressed[e.code] = false;
+    });
+
+    function setShipMove(dir) {
+      arcState.shipMoveDir = dir;
+    }
+
+    function resizeArcadeCanvas() {
+      const container = document.getElementById('arcadeContainer');
+      const canvas = document.getElementById('arcadeCanvas');
+      if (!container || !canvas) return;
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      if (!arcState.running) {
+        drawArcadeIdleScreen();
+      }
+    }
+
+    function updateArcadeHUD() {
+      document.getElementById('arcScore').textContent = arcState.score;
+      document.getElementById('arcHighScore').textContent = arcState.highScore;
+      document.getElementById('arcWave').textContent = arcState.wave;
+      document.getElementById('arcLives').textContent = arcState.lives;
+    }
+
+    function spawnEnemyWave() {
+      const canvas = document.getElementById('arcadeCanvas');
+      const cols = 5;
+      const spacing = Math.min(170, (canvas.width - 120) / cols);
+      const startX = (canvas.width - (cols - 1) * spacing) / 2;
+
+      for (let i = 0; i < cols; i++) {
+        const isBeacon = i === 2;
+        arcState.enemies.push({
+          x: startX + i * spacing,
+          y: 52 + (i % 2) * 30,
+          r: isBeacon ? 28 : 22,
+          speedY: 26 + arcState.wave * 6,
+          isBeacon: isBeacon,
+          hp: isBeacon ? 2 : 1
+        });
+      }
+    }
+
+    function startArcadeGame() {
+      resizeArcadeCanvas();
+      const canvas = document.getElementById('arcadeCanvas');
+      arcState.running = true;
+      arcState.pausedForQuiz = false;
+      arcState.manualPaused = false;
+      document.getElementById('btnPauseArc1').textContent = 'PAUSE';
+      arcState.score = 0;
+      arcState.wave = 1;
+      arcState.lives = 3;
+      arcState.shipX = canvas.width / 2;
+      arcState.bullets = [];
+      arcState.enemies = [];
+      arcState.particles = [];
+      arcState.megaLaserTimer = 0;
+      arcState.enemiesDestroyedSinceQuiz = 0;
+      document.getElementById('arcadeQuizOverlay').classList.remove('active');
+
+      spawnEnemyWave();
+      updateArcadeHUD();
+      playSuccessChime();
+      arcState.lastFrameTime = performance.now();
+      requestAnimationFrame(arcadeGameLoop);
+    }
+
+    function togglePauseArcade1() {
+      if (!arcState.running || arcState.pausedForQuiz) return;
+      arcState.manualPaused = !arcState.manualPaused;
+      document.getElementById('btnPauseArc1').textContent = arcState.manualPaused ? 'RESUME' : 'PAUSE';
+      if (!arcState.manualPaused) {
+        arcState.lastFrameTime = performance.now();
+      }
+    }
+
+    function firePlayerBullet() {
+      if (!arcState.running || arcState.pausedForQuiz || arcState.manualPaused) return;
+      const canvas = document.getElementById('arcadeCanvas');
+      arcState.bullets.push({
+        x: arcState.shipX,
+        y: canvas.height - 62,
+        speedY: 560
+      });
+      playTone(880, 'square', 0.06, 0.07);
+    }
+
+    function createExplosion(targetParticles, x, y, color) {
+      for (let i = 0; i < 14; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 60 + Math.random() * 180;
+        targetParticles.push({
+          x,
+          y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 0.45,
+          color
+        });
+      }
+    }
+
+    function triggerArcadeQuizManual() {
+      if (!arcState.running) {
+        startArcadeGame();
+      }
+      if (!arcState.pausedForQuiz) {
+        openArcadeQuiz();
+      }
+    }
+
+    function openArcadeQuiz() {
+      arcState.pausedForQuiz = true;
+      const qObj = drawNextCond2Question();
+
+      document.getElementById('arcQuizQuestion').textContent = qObj.q;
+      const optsContainer = document.getElementById('arcQuizOptions');
+      optsContainer.innerHTML = '';
+
+      qObj.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt-btn';
+        btn.textContent = optText;
+        btn.onclick = () => resolveArcadeQuiz(idx === qObj.ans, qObj.exp);
+        optsContainer.appendChild(btn);
+      });
+
+      document.getElementById('arcadeQuizOverlay').classList.add('active');
+      playTone(620, 'sine', 0.15, 0.1);
+    }
+
+    function resolveArcadeQuiz(isCorrect, explanation) {
+      document.getElementById('arcadeQuizOverlay').classList.remove('active');
+      arcState.pausedForQuiz = false;
+      arcState.enemiesDestroyedSinceQuiz = 0;
+      arcState.lastFrameTime = performance.now();
+
+      if (isCorrect) {
+        playSuccessChime();
+        arcState.score += 500;
+        if (arcState.lives < 5) arcState.lives++;
+        arcState.megaLaserTimer = 0.75;
+        arcState.enemies.forEach((en) => createExplosion(arcState.particles, en.x, en.y, '#00f3ff'));
+        arcState.enemies = [];
+        arcState.wave++;
+        spawnEnemyWave();
+        showToast('CORRECT! MEGA-LASER FIRED (+500 PTS & +1 SHIELD)');
+      } else {
+        playErrorBuzz();
+        arcState.lives--;
+        showToast('INCORRECT! ' + explanation);
+        if (arcState.lives <= 0) {
+          arcState.running = false;
+        }
+      }
+
+      if (arcState.score > arcState.highScore) {
+        arcState.highScore = arcState.score;
+      }
+      updateArcadeHUD();
+    }
+
+    function drawArcadeIdleScreen() {
+      const canvas = document.getElementById('arcadeCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#04020a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = 'rgba(255, 0, 127, 0.35)';
+      ctx.lineWidth = 2;
+      for (let x = 0; x < canvas.width; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = '#00f3ff';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('GRAMMAR DEFENDER: 2ND CONDITIONAL', canvas.width / 2, canvas.height / 2 - 20);
+
+      ctx.fillStyle = '#ffd700';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('PRESS "START / RESTART" BELOW TO LAUNCH', canvas.width / 2, canvas.height / 2 + 20);
+    }
+
+    function arcadeGameLoop(now) {
+      if (!arcState.running) {
+        const canvas = document.getElementById('arcadeCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(4, 2, 10, 0.88)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ff2a55';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('GAME OVER // FINAL SCORE: ' + arcState.score, canvas.width / 2, canvas.height / 2 - 16);
+        ctx.fillStyle = '#00f3ff';
+        ctx.font = 'bold 18px sans-serif';
+        ctx.fillText('CLICK "START / RESTART" TO PLAY AGAIN', canvas.width / 2, canvas.height / 2 + 22);
+        return;
+      }
+
+      if (arcState.pausedForQuiz || arcState.manualPaused) {
+        requestAnimationFrame(arcadeGameLoop);
+        return;
+      }
+
+      const dt = Math.min((now - arcState.lastFrameTime) / 1000, 0.05);
+      arcState.lastFrameTime = now;
+
+      const canvas = document.getElementById('arcadeCanvas');
+      const ctx = canvas.getContext('2d');
+
+      let move = arcState.shipMoveDir;
+      if (keysPressed['ArrowLeft'] || keysPressed['KeyA']) move = -1;
+      if (keysPressed['ArrowRight'] || keysPressed['KeyD']) move = 1;
+      arcState.shipX += move * 450 * dt;
+      arcState.shipX = Math.max(36, Math.min(canvas.width - 36, arcState.shipX));
+
+      for (let i = arcState.bullets.length - 1; i >= 0; i--) {
+        arcState.bullets[i].y -= arcState.bullets[i].speedY * dt;
+        if (arcState.bullets[i].y < -10) {
+          arcState.bullets.splice(i, 1);
+        }
+      }
+
+      for (let i = arcState.enemies.length - 1; i >= 0; i--) {
+        const en = arcState.enemies[i];
+        en.y += en.speedY * dt;
+
+        let destroyed = false;
+        for (let b = arcState.bullets.length - 1; b >= 0; b--) {
+          const bul = arcState.bullets[b];
+          const dist = Math.hypot(en.x - bul.x, en.y - bul.y);
+          if (dist < en.r + 8) {
+            arcState.bullets.splice(b, 1);
+            en.hp--;
+            if (en.hp <= 0) {
+              destroyed = true;
+              arcState.score += en.isBeacon ? 100 : 50;
+              arcState.enemiesDestroyedSinceQuiz++;
+              createExplosion(arcState.particles, en.x, en.y, en.isBeacon ? '#ffd700' : '#ff007f');
+              playTone(220, 'sawtooth', 0.1, 0.1);
+
+              if (en.isBeacon || arcState.enemiesDestroyedSinceQuiz >= 4) {
+                arcState.enemies.splice(i, 1);
+                updateArcadeHUD();
+                openArcadeQuiz();
+                requestAnimationFrame(arcadeGameLoop);
+                return;
+              }
+            }
+            break;
+          }
+        }
+
+        if (destroyed) {
+          arcState.enemies.splice(i, 1);
+          continue;
+        }
+
+        if (en.y > canvas.height - 55) {
+          arcState.enemies.splice(i, 1);
+          arcState.lives--;
+          createExplosion(arcState.particles, en.x, en.y, '#ff2a55');
+          playErrorBuzz();
+          if (arcState.lives <= 0) {
+            arcState.running = false;
+          }
+        }
+      }
+
+      if (arcState.enemies.length === 0 && arcState.running) {
+        arcState.wave++;
+        spawnEnemyWave();
+      }
+
+      if (arcState.score > arcState.highScore) {
+        arcState.highScore = arcState.score;
+      }
+      updateArcadeHUD();
+
+      if (arcState.megaLaserTimer > 0) {
+        arcState.megaLaserTimer -= dt;
+      }
+      for (let p = arcState.particles.length - 1; p >= 0; p--) {
+        const pt = arcState.particles[p];
+        pt.x += pt.vx * dt;
+        pt.y += pt.vy * dt;
+        pt.life -= dt;
+        if (pt.life <= 0) arcState.particles.splice(p, 1);
+      }
+
+      ctx.fillStyle = '#04020a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = 'rgba(0, 243, 255, 0.16)';
+      ctx.lineWidth = 1.5;
+      for (let x = 0; x < canvas.width; x += 64) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = (now * 0.05) % 64; y < canvas.height; y += 64) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+      if (arcState.megaLaserTimer > 0) {
+        ctx.fillStyle = 'rgba(0, 243, 255, 0.45)';
+        ctx.fillRect(arcState.shipX - 45, 0, 90, canvas.height - 50);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(arcState.shipX - 14, 0, 28, canvas.height - 50);
+      }
+
+      const sy = canvas.height - 42;
+      ctx.save();
+      ctx.translate(arcState.shipX, sy);
+      ctx.fillStyle = '#00f3ff';
+      ctx.strokeStyle = '#ffd700';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(0, -26);
+      ctx.lineTo(26, 20);
+      ctx.lineTo(0, 10);
+      ctx.lineTo(-26, 20);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.fillStyle = '#ffd700';
+      arcState.bullets.forEach((b) => {
+        ctx.fillRect(b.x - 3, b.y - 12, 6, 22);
+      });
+
+      arcState.enemies.forEach((en) => {
+        ctx.save();
+        ctx.translate(en.x, en.y);
+        ctx.fillStyle = en.isBeacon ? '#ffd700' : '#ff007f';
+        ctx.strokeStyle = en.isBeacon ? '#00f3ff' : '#ffffff';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(0, en.r);
+        ctx.lineTo(en.r, -en.r * 0.6);
+        ctx.lineTo(0, -en.r);
+        ctx.lineTo(-en.r, -en.r * 0.6);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        if (en.isBeacon) {
+          ctx.fillStyle = '#070514';
+          ctx.font = 'bold 16px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('2ND', 0, 5);
+        }
+        ctx.restore();
+      });
+
+      arcState.particles.forEach((pt) => {
+        ctx.fillStyle = pt.color;
+        ctx.fillRect(pt.x, pt.y, 5, 5);
+      });
+
+      requestAnimationFrame(arcadeGameLoop);
+    }
+
+    /* ========================================================================
+       7. TAB 6: WRITING 5 SENTENCES VALIDATION & PROJECTION
+       ======================================================================== */
+    function validateFiveSentences() {
+      const inputs = document.querySelectorAll('.w5-input');
+      const statuses = document.querySelectorAll('.w5-status');
+      let passed = 0;
+
+      inputs.forEach((inp, idx) => {
+        const raw = inp.value.trim();
+        const lower = raw.toLowerCase();
+        const rule = inp.getAttribute('data-rule');
+        inp.classList.remove('input-correct', 'input-wrong');
+
+        if (raw.length < 10) {
+          inp.classList.add('input-wrong');
+          statuses[idx].style.color = '#ff8da3';
+          statuses[idx].textContent = 'STATUS: Please write a complete sentence.';
+          return;
+        }
+
+        const hasIf = /\bif\b/.test(lower);
+        const hasModal = /\b(would|wouldn't|could|couldn't|might)\b/.test(lower);
+        let ruleOk = hasIf && hasModal;
+
+        if (rule === 'standard') {
+          ruleOk = ruleOk && raw.includes(',');
+        } else if (rule === 'were') {
+          ruleOk = ruleOk && /\bif\s+i\s+were\b/.test(lower);
+        } else if (rule === 'negative') {
+          ruleOk = ruleOk && /(n't|\bnot\b|\bnever\b)/.test(lower);
+        } else if (rule === 'question') {
+          ruleOk = ruleOk && raw.endsWith('?');
+        } else if (rule === 'inverted') {
+          ruleOk = ruleOk && lower.indexOf('if') > 4;
+        }
+
+        if (ruleOk) {
+          inp.classList.add('input-correct');
+          statuses[idx].style.color = 'var(--neon-green)';
+          statuses[idx].textContent = 'STATUS: VERIFIED (Contains IF-clause, punctuation, and target modal).';
+          passed++;
+        } else {
+          inp.classList.add('input-wrong');
+          statuses[idx].style.color = '#ff8da3';
+          statuses[idx].textContent = 'STATUS: Check "if", comma usage, "would/could/might", and the specific prompt rule.';
+        }
+      });
+
+      if (passed === 5) {
+        playSuccessChime();
+        showToast('ALL 5 ORIGINAL SENTENCES VERIFIED!');
+      } else {
+        playTone(380, 'triangle', 0.1, 0.09);
+      }
+    }
+
+    function showProjectionSummary() {
+      const inputs = document.querySelectorAll('.w5-input');
+      const list = document.getElementById('w5SummaryList');
+      list.innerHTML = '';
+
+      inputs.forEach((inp, i) => {
+        const li = document.createElement('li');
+        li.style.marginBottom = '12px';
+        li.textContent = inp.value.trim() || `[Sentence ${i + 1} not entered yet]`;
+        list.appendChild(li);
+      });
+
+      document.getElementById('w5SummaryBox').style.display = 'block';
+      playSuccessChime();
+    }
+
+    /* ========================================================================
+       8. TAB 8: PRACTICE REPORTED SPEECH LOGIC
+       ======================================================================== */
+    function checkRSBlanks() {
+      const inputs = document.querySelectorAll('.rs-blank');
+      let correctCount = 0;
+
+      inputs.forEach((inp) => {
+        const userVal = normalizeText(inp.value);
+        const validOptions = inp.getAttribute('data-ans').split('|').map(normalizeText);
+        inp.classList.remove('input-correct', 'input-wrong');
+
+        if (validOptions.includes(userVal)) {
+          inp.classList.add('input-correct');
+          correctCount++;
+        } else {
+          inp.classList.add('input-wrong');
+        }
+      });
+
+      const fb = document.getElementById('rsBlankFeedback');
+      fb.className = 'feedback-banner show ' + (correctCount === inputs.length ? 'success' : 'info');
+      fb.textContent = `SCORE: ${correctCount} / ${inputs.length} CORRECT. ${
+        correctCount === inputs.length
+          ? 'MASTERFUL! ALL TENSE BACKSHIFTS ARE ACCURATE.'
+          : 'CHECK RED FIELDS: PRESENT -> PAST, PRESENT CONTINUOUS -> PAST CONTINUOUS, WILL -> WOULD.'
+      }`;
+
+      if (correctCount === inputs.length) playSuccessChime();
+      else playErrorBuzz();
+    }
+
+    function revealRSBlanks() {
+      document.querySelectorAll('.rs-blank').forEach((inp) => {
+        inp.value = inp.getAttribute('data-ans').split('|')[0];
+        inp.classList.remove('input-wrong');
+        inp.classList.add('input-correct');
+      });
+      playSuccessChime();
+    }
+
+    function resetRSBlanks() {
+      document.querySelectorAll('.rs-blank').forEach((inp) => {
+        inp.value = '';
+        inp.classList.remove('input-correct', 'input-wrong');
+      });
+      document.getElementById('rsBlankFeedback').classList.remove('show');
+      playTone(330, 'sine', 0.08, 0.08);
+    }
+
+    function checkRSCompletions() {
+      const inputs = document.querySelectorAll('.rs-complete');
+      let correctCount = 0;
+
+      inputs.forEach((inp) => {
+        const userVal = normalizeText(inp.value);
+        const validOptions = inp.getAttribute('data-ans').split('|').map(normalizeText);
+        inp.classList.remove('input-correct', 'input-wrong');
+
+        if (validOptions.includes(userVal)) {
+          inp.classList.add('input-correct');
+          correctCount++;
+        } else {
+          inp.classList.add('input-wrong');
+        }
+      });
+
+      const fb = document.getElementById('rsCompFeedback');
+      fb.className = 'feedback-banner show ' + (correctCount === inputs.length ? 'success' : 'info');
+      fb.textContent = `SECTION B SCORE: ${correctCount} / ${inputs.length} CORRECT.`;
+
+      if (correctCount === inputs.length) playSuccessChime();
+      else playErrorBuzz();
+    }
+
+    let rsModelsVisible = false;
+    function toggleRSModelAnswers() {
+      rsModelsVisible = !rsModelsVisible;
+      document.querySelectorAll('.rs-model-ans').forEach((el) => {
+        el.style.display = rsModelsVisible ? 'block' : 'none';
+      });
+      playTone(540, 'triangle', 0.09, 0.09);
+    }
+
+    /* ========================================================================
+       9. TAB 9: ARCADE 2 — NEON TENSE BREAKER 2084 (5 PROGRESSIVE BOARDS)
+       ======================================================================== */
+    const reportedSpeechQuestions = [
+      // STAGE 1 (tier: 1): Present Simple -> Past Simple & Basic Will -> Would
+      {
+        tier: 1,
+        q: 'Direct: "I play cyber-chess." -> He said that he _____ cyber-chess.',
+        opts: ['plays', 'played', 'is playing', 'will play'],
+        ans: 1,
+        exp: 'Present Simple ("play") shifts backward to Past Simple ("played").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "I will help you." -> Maya told me that she _____ help me.',
+        opts: ['will', 'can', 'would', 'was'],
+        ans: 2,
+        exp: 'Future "will" always shifts backward to "would" in Reported Speech.'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "They don\'t like loud noise." -> She said they _____ loud noise.',
+        opts: ['don\'t like', 'didn\'t like', 'wouldn\'t like', 'not liked'],
+        ans: 1,
+        exp: 'Negative Present Simple ("don\'t like") shifts to Past Simple ("didn\'t like").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "I have a laser scanner." -> The agent said he _____ a laser scanner.',
+        opts: ['has', 'had', 'have', 'is having'],
+        ans: 1,
+        exp: 'Present Simple ("have") shifts backward to Past Simple ("had").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "We live near the spaceport." -> They said they _____ near the spaceport.',
+        opts: ['live', 'lived', 'will live', 'living'],
+        ans: 1,
+        exp: 'Present Simple ("live") shifts backward to Past Simple ("lived").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "She speaks four languages." -> Tom said she _____ four languages.',
+        opts: ['speaks', 'spoke', 'spoken', 'will speak'],
+        ans: 1,
+        exp: 'Present Simple ("speaks") shifts backward to Past Simple ("spoke").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "The robot needs a new battery." -> Leo said the robot _____ a new battery.',
+        opts: ['needs', 'needed', 'will need', 'needing'],
+        ans: 1,
+        exp: 'Present Simple ("needs") shifts backward to Past Simple ("needed").'
+      },
+      {
+        tier: 1,
+        q: 'Direct: "I will send the coordinates." -> Ana said she _____ send the coordinates.',
+        opts: ['will', 'would', 'can', 'did'],
+        ans: 1,
+        exp: 'Future "will" shifts backward to "would".'
+      },
+
+      // STAGE 2 (tier: 2): Present Continuous -> Past Continuous & Negative Modals
+      {
+        tier: 2,
+        q: 'Direct: "She is coding a robot." -> Tom said that she _____ a robot.',
+        opts: ['was coding', 'is coding', 'coded', 'will code'],
+        ans: 0,
+        exp: 'Present Continuous ("is coding") shifts to Past Continuous ("was coding").'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "We are watching the stars." -> They said they _____ the stars.',
+        opts: ['are watching', 'were watching', 'watched', 'watch'],
+        ans: 1,
+        exp: 'Present Continuous ("are watching") shifts to Past Continuous ("were watching").'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "It is raining outside." -> Ana said that it _____ outside.',
+        opts: ['is raining', 'was raining', 'rained', 'will rain'],
+        ans: 1,
+        exp: 'Present Continuous ("is raining") shifts to Past Continuous ("was raining").'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "She won\'t forget the code." -> He said she _____ forget the code.',
+        opts: ['won\'t', 'didn\'t', 'wouldn\'t', 'wasn\'t'],
+        ans: 2,
+        exp: 'Negative future "won\'t" (will not) shifts to "wouldn\'t" (would not).'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "I am repairing the engine." -> The mechanic said he _____ the engine.',
+        opts: ['is repairing', 'was repairing', 'repaired', 'will repair'],
+        ans: 1,
+        exp: 'Present Continuous ("am repairing") shifts to Past Continuous ("was repairing").'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "They aren\'t coming to the party." -> Mia said they _____ to the party.',
+        opts: ['aren\'t coming', 'weren\'t coming', 'didn\'t come', 'won\'t come'],
+        ans: 1,
+        exp: 'Negative Present Continuous ("aren\'t coming") shifts to "weren\'t coming".'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "I can solve this puzzle." -> Kevin said he _____ solve that puzzle.',
+        opts: ['can', 'could', 'will', 'would'],
+        ans: 1,
+        exp: 'Modal "can" shifts backward to "could" in Reported Speech.'
+      },
+      {
+        tier: 2,
+        q: 'Direct: "You are driving too fast." -> Sarah told me I _____ too fast.',
+        opts: ['am driving', 'was driving', 'drove', 'will drive'],
+        ans: 1,
+        exp: 'Present Continuous ("are driving") shifts to Past Continuous ("was driving").'
+      },
+
+      // STAGE 3 (tier: 3): Said vs Told & Pronoun Shifts
+      {
+        tier: 3,
+        q: 'Direct: "I live in Neo-Tokyo." -> Ken _____ me that he lived in Neo-Tokyo.',
+        opts: ['said', 'told', 'spoke', 'say'],
+        ans: 1,
+        exp: 'Use "told" when followed by a personal object ("me").'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "We will win the tournament." -> They _____ they would win.',
+        opts: ['told', 'said', 'told to', 'saying'],
+        ans: 1,
+        exp: 'Use "said" when there is NO personal object immediately after the verb.'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "My sister works at the lab." -> He said _____ sister worked at the lab.',
+        opts: ['my', 'her', 'his', 'our'],
+        ans: 2,
+        exp: 'Pronoun shift: "My" changes to "his" when reporting a male speaker.'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "We love our new school." -> The students said they loved _____ new school.',
+        opts: ['our', 'their', 'his', 'my'],
+        ans: 1,
+        exp: 'Pronoun shift: "our" becomes "their" when reporting a group.'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "I will call you later." -> Elena _____ us that she would call us later.',
+        opts: ['said', 'told', 'said to', 'telling'],
+        ans: 1,
+        exp: 'Personal object "us" requires "told" (without "to").'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "My drone is flying high." -> Zoe said _____ drone was flying high.',
+        opts: ['my', 'her', 'his', 'their'],
+        ans: 1,
+        exp: 'Pronoun shift: "My" becomes "her" when reporting a female speaker.'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "I don\'t know your password." -> David told me he didn\'t know _____ password.',
+        opts: ['your', 'my', 'his', 'our'],
+        ans: 1,
+        exp: 'When David speaks to "me", "your" shifts to "my".'
+      },
+      {
+        tier: 3,
+        q: 'Direct: "The mission is ready." -> The commander _____ that the mission was ready.',
+        opts: ['told', 'said', 'told us to', 'saying'],
+        ans: 1,
+        exp: 'No indirect object follows the verb, so "said" is required.'
+      },
+
+      // STAGE 4 (tier: 4): Time & Place Shifts (today, tomorrow, now, here, this)
+      {
+        tier: 4,
+        q: 'Direct: "I will arrive tomorrow." -> He said he would arrive _____.',
+        opts: ['tomorrow', 'yesterday', 'the next day', 'now'],
+        ans: 2,
+        exp: 'Time shift rule: "tomorrow" becomes "the next day".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "I am studying right now." -> Leo said he was studying _____.',
+        opts: ['now', 'then', 'tomorrow', 'here'],
+        ans: 1,
+        exp: 'Time shift rule: "now" shifts to "then".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "I will call you today." -> She said she would call me _____.',
+        opts: ['today', 'that day', 'tomorrow', 'now'],
+        ans: 1,
+        exp: 'Time shift rule: "today" shifts to "that day".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "I am waiting here." -> David said that he was waiting _____.',
+        opts: ['here', 'there', 'now', 'this'],
+        ans: 1,
+        exp: 'Place shift rule: "here" shifts to "there".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "We are launching this satellite." -> They said they were launching _____ satellite.',
+        opts: ['this', 'that', 'these', 'here'],
+        ans: 1,
+        exp: 'Demonstrative shift rule: "this" shifts to "that".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "The concert starts tonight." -> Maya said the concert started _____.',
+        opts: ['tonight', 'that night', 'tomorrow night', 'now'],
+        ans: 1,
+        exp: 'Time shift rule: "tonight" shifts to "that night".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "I will finish the report next week." -> Sam said he would finish it _____.',
+        opts: ['next week', 'the following week', 'last week', 'this week'],
+        ans: 1,
+        exp: 'Time shift rule: "next week" becomes "the following week".'
+      },
+      {
+        tier: 4,
+        q: 'Direct: "These files are encrypted." -> The hacker said _____ files were encrypted.',
+        opts: ['these', 'those', 'this', 'here'],
+        ans: 1,
+        exp: 'Demonstrative shift rule: "these" shifts to "those".'
+      },
+
+      // STAGE 5 (tier: 5): Complex Mixed Transformations (Tense + Pronoun + Time/Place)
+      {
+        tier: 5,
+        q: 'Direct: "I am testing my drone here today." -> Sam said he _____ drone there that day.',
+        opts: ['is testing my', 'was testing his', 'tested his', 'was testing my'],
+        ans: 1,
+        exp: 'Combined shift: "am testing" -> "was testing", "my" -> "his", "here" -> "there", "today" -> "that day".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "We will launch our ship tomorrow." -> They told us they _____ ship the next day.',
+        opts: ['will launch our', 'would launch their', 'launched their', 'would launch our'],
+        ans: 1,
+        exp: 'Combined shift: "will launch" -> "would launch", "our" -> "their", "tomorrow" -> "the next day".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "I don\'t need your help now." -> Mia _____ me she didn\'t need my help then.',
+        opts: ['said', 'told', 'told to', 'say'],
+        ans: 1,
+        exp: 'Personal object "me" requires "told", plus Present Simple -> Past Simple and "now" -> "then".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "My team is winning this match." -> Zoe said _____ team was winning that match.',
+        opts: ['my', 'her', 'his', 'their'],
+        ans: 1,
+        exp: 'Pronoun shift: "My" -> "her" for Zoe, with Present Continuous -> Past Continuous.'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "I will meet you here tomorrow." -> Alex told me he _____ me there the next day.',
+        opts: ['will meet', 'would meet', 'met', 'is meeting'],
+        ans: 1,
+        exp: 'Combined shift: "will meet" -> "would meet", "here" -> "there", "tomorrow" -> "the next day".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "We are staying at this hotel today." -> They said they _____ at that hotel that day.',
+        opts: ['are staying', 'were staying', 'stayed', 'will stay'],
+        ans: 1,
+        exp: 'Combined shift: "are staying" -> "were staying", "this" -> "that", "today" -> "that day".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "I can fix your computer tomorrow." -> Leo _____ me he could fix my computer the next day.',
+        opts: ['said', 'told', 'say', 'telling'],
+        ans: 1,
+        exp: 'Personal object "me" requires "told", "can" -> "could", "your" -> "my", "tomorrow" -> "the next day".'
+      },
+      {
+        tier: 5,
+        q: 'Direct: "My parents don\'t live here now." -> Chloe said _____ parents didn\'t live there then.',
+        opts: ['my', 'her', 'his', 'our'],
+        ans: 1,
+        exp: 'Combined shift: "My" -> "her", "don\'t live" -> "didn\'t live", "here" -> "there", "now" -> "then".'
+      }
+    ];
+
+    /* Non-Repeating Stage-Filtered Shuffle-Bag Queues for Arcade 2 */
+    const breakerStageDecks = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+
+    function drawNextBreakerQuestion(stageNum) {
+      const tier = Math.max(1, Math.min(5, stageNum));
+      if (!breakerStageDecks[tier] || breakerStageDecks[tier].length === 0) {
+        const matchingIndices = [];
+        reportedSpeechQuestions.forEach((item, idx) => {
+          if (item.tier === tier) matchingIndices.push(idx);
+        });
+        breakerStageDecks[tier] = shuffleArray(matchingIndices);
+      }
+      const nextIdx = breakerStageDecks[tier].pop();
+      return prepareShuffledQuestion(reportedSpeechQuestions[nextIdx]);
+    }
+
+    const BREAKER_STAGES = [
+      {
+        num: 1,
+        name: 'NEON PERIMETER',
+        paddleRatio: 0.19,
+        ballSpeed: 390,
+        tierMax: 1
+      },
+      {
+        num: 2,
+        name: 'TWIN FIREWALLS',
+        paddleRatio: 0.17,
+        ballSpeed: 430,
+        tierMax: 2
+      },
+      {
+        num: 3,
+        name: 'CYBER DIAMOND',
+        paddleRatio: 0.155,
+        ballSpeed: 470,
+        tierMax: 3
+      },
+      {
+        num: 4,
+        name: 'QUANTUM FORTRESS',
+        paddleRatio: 0.14,
+        ballSpeed: 510,
+        tierMax: 4
+      },
+      {
+        num: 5,
+        name: 'MAINFRAME CORE OVERLOAD',
+        paddleRatio: 0.125,
+        ballSpeed: 555,
+        tierMax: 5
+      }
+    ];
+
+    let bbState = {
+      running: false,
+      victory: false,
+      pausedForQuiz: false,
+      ballLaunched: false,
+      score: 0,
+      highScore: 0,
+      level: 1,
+      lives: 3,
+      paddleX: 300,
+      paddleWidth: 160,
+      paddleHeight: 20,
+      paddleMoveDir: 0,
+      ballX: 300,
+      ballY: 400,
+      ballVX: 260,
+      ballVY: -320,
+      ballRadius: 10,
+      bricks: [],
+      particles: [],
+      shockwaveTimer: 0,
+      stageBannerTimer: 0,
+      stageBannerText: '',
+      oscTime: 0,
+      lastFrameTime: 0
+    };
+
+    function setPaddleMove(dir) {
+      bbState.paddleMoveDir = dir;
+    }
+
+    function resizeBreakerCanvas() {
+      const container = document.getElementById('breakerContainer');
+      const canvas = document.getElementById('breakerCanvas');
+      if (!container || !canvas) return;
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      if (!bbState.running) {
+        drawBreakerIdleScreen();
+      }
+    }
+
+    function getStageConfig(stageNum) {
+      const idx = Math.max(0, Math.min(BREAKER_STAGES.length - 1, stageNum - 1));
+      return BREAKER_STAGES[idx];
+    }
+
+    function updateBreakerHUD() {
+      const cfg = getStageConfig(bbState.level);
+      document.getElementById('bbScore').textContent = bbState.score;
+      document.getElementById('bbHighScore').textContent = bbState.highScore;
+      document.getElementById('bbLevel').textContent = `${cfg.num}/5 - ${cfg.name}`;
+      document.getElementById('bbLives').textContent = bbState.lives;
+    }
+
+    function buildBreakerBricks() {
+      const canvas = document.getElementById('breakerCanvas');
+      bbState.bricks = [];
+      const stage = bbState.level;
+      const sideMargin = 26;
+      const topOffset = 34;
+
+      if (stage === 1) {
+        // STAGE 1: NEON PERIMETER (4 rows x 7 cols, single-hit + 3 Gold Grammar Cores)
+        const rows = 4;
+        const cols = 7;
+        const pad = 10;
+        const brickW = (canvas.width - sideMargin * 2 - pad * (cols - 1)) / cols;
+        const brickH = 28;
+        const colors = ['#ff007f', '#9d00ff', '#00f3ff', '#39ff14'];
+        const coreCoords = ['0-3', '2-1', '2-5'];
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            const isCore = coreCoords.includes(`${r}-${c}`);
+            bbState.bricks.push({
+              x: sideMargin + c * (brickW + pad),
+              baseX: sideMargin + c * (brickW + pad),
+              y: topOffset + r * (brickH + pad),
+              w: brickW,
+              h: brickH,
+              row: r,
+              hp: 1,
+              maxHp: 1,
+              alive: true,
+              isGrammarCore: isCore,
+              unbreakable: false,
+              oscillate: false,
+              color: isCore ? '#ffd700' : colors[r]
+            });
+          }
+        }
+      } else if (stage === 2) {
+        // STAGE 2: TWIN FIREWALLS (Split left/right fortresses with central gap + 2-hit armored shields + 3 Cores)
+        const rows = 5;
+        const cols = 8;
+        const pad = 8;
+        const brickW = (canvas.width - sideMargin * 2 - pad * (cols - 1)) / cols;
+        const brickH = 26;
+        const coreCoords = ['1-1', '1-6', '3-2'];
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            // Central vertical corridor gap (cols 3 and 4)
+            if (c === 3 || c === 4) continue;
+            const isCore = coreCoords.includes(`${r}-${c}`);
+            const isArmored = !isCore && (r === 0 || r === 4);
+            bbState.bricks.push({
+              x: sideMargin + c * (brickW + pad),
+              baseX: sideMargin + c * (brickW + pad),
+              y: topOffset + r * (brickH + pad),
+              w: brickW,
+              h: brickH,
+              row: r,
+              hp: isArmored ? 2 : 1,
+              maxHp: isArmored ? 2 : 1,
+              alive: true,
+              isGrammarCore: isCore,
+              unbreakable: false,
+              oscillate: false,
+              color: isCore ? '#ffd700' : (isArmored ? '#9d00ff' : '#00f3ff')
+            });
+          }
+        }
+      } else if (stage === 3) {
+        // STAGE 3: CYBER DIAMOND (Diamond formation + Unbreakable Obsidian Bumpers + 4 Cores)
+        const rows = 5;
+        const cols = 9;
+        const pad = 8;
+        const brickW = (canvas.width - sideMargin * 2 - pad * (cols - 1)) / cols;
+        const brickH = 25;
+        const center = 4;
+        const coreCoords = ['1-4', '2-3', '2-5', '3-4'];
+
+        for (let r = 0; r < rows; r++) {
+          const span = r <= 2 ? r + 1 : 5 - r;
+          for (let c = 0; c < cols; c++) {
+            // Flanking unbreakable obsidian bumpers on row 3, cols 0 and 8
+            if (r === 3 && (c === 0 || c === 8)) {
+              bbState.bricks.push({
+                x: sideMargin + c * (brickW + pad),
+                baseX: sideMargin + c * (brickW + pad),
+                y: topOffset + r * (brickH + pad),
+                w: brickW,
+                h: brickH,
+                row: r,
+                hp: 999,
+                maxHp: 999,
+                alive: true,
+                isGrammarCore: false,
+                unbreakable: true,
+                oscillate: false,
+                color: '#4a5568'
+              });
+              continue;
+            }
+            if (Math.abs(c - center) > span) continue;
+            const isCore = coreCoords.includes(`${r}-${c}`);
+            const isArmored = !isCore && Math.abs(c - center) === span;
+            bbState.bricks.push({
+              x: sideMargin + c * (brickW + pad),
+              baseX: sideMargin + c * (brickW + pad),
+              y: topOffset + r * (brickH + pad),
+              w: brickW,
+              h: brickH,
+              row: r,
+              hp: isArmored ? 2 : 1,
+              maxHp: isArmored ? 2 : 1,
+              alive: true,
+              isGrammarCore: isCore,
+              unbreakable: false,
+              oscillate: false,
+              color: isCore ? '#ffd700' : (isArmored ? '#ff007f' : '#00f3ff')
+            });
+          }
+        }
+      } else if (stage === 4) {
+        // STAGE 4: QUANTUM FORTRESS (6-row bunker + oscillating deflector shields + 4 Gold Cores)
+        const rows = 6;
+        const cols = 8;
+        const pad = 8;
+        const brickW = (canvas.width - sideMargin * 2 - pad * (cols - 1)) / cols;
+        const brickH = 23;
+        const coreCoords = ['1-2', '1-5', '3-1', '3-6'];
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            // Row 5 has 3 oscillating armored deflector shields with gaps
+            if (r === 5) {
+              if (c !== 1 && c !== 4 && c !== 6) continue;
+              bbState.bricks.push({
+                x: sideMargin + c * (brickW + pad),
+                baseX: sideMargin + c * (brickW + pad),
+                y: topOffset + r * (brickH + pad) + 6,
+                w: brickW,
+                h: brickH,
+                row: r,
+                hp: 2,
+                maxHp: 2,
+                alive: true,
+                isGrammarCore: false,
+                unbreakable: false,
+                oscillate: true,
+                color: '#ff007f'
+              });
+              continue;
+            }
+            const isCore = coreCoords.includes(`${r}-${c}`);
+            const isArmored = !isCore && (r === 0 || r === 2 || r === 4);
+            bbState.bricks.push({
+              x: sideMargin + c * (brickW + pad),
+              baseX: sideMargin + c * (brickW + pad),
+              y: topOffset + r * (brickH + pad),
+              w: brickW,
+              h: brickH,
+              row: r,
+              hp: isArmored ? 2 : 1,
+              maxHp: isArmored ? 2 : 1,
+              alive: true,
+              isGrammarCore: isCore,
+              unbreakable: false,
+              oscillate: false,
+              color: isCore ? '#ffd700' : (isArmored ? '#9d00ff' : '#39ff14')
+            });
+          }
+        }
+      } else {
+        // STAGE 5: MAINFRAME CORE OVERLOAD (Boss matrix with 3-hit cores, unbreakable bumpers, moving shields & 5 Cores)
+        const rows = 6;
+        const cols = 9;
+        const pad = 7;
+        const brickW = (canvas.width - sideMargin * 2 - pad * (cols - 1)) / cols;
+        const brickH = 23;
+        const coreCoords = ['0-4', '2-2', '2-6', '4-1', '4-7'];
+
+        for (let r = 0; r < rows; r++) {
+          for (let c = 0; c < cols; c++) {
+            // Unbreakable obsidian pillars guarding the core
+            if ((r === 2 && (c === 0 || c === 8)) || (r === 4 && (c === 3 || c === 5))) {
+              bbState.bricks.push({
+                x: sideMargin + c * (brickW + pad),
+                baseX: sideMargin + c * (brickW + pad),
+                y: topOffset + r * (brickH + pad),
+                w: brickW,
+                h: brickH,
+                row: r,
+                hp: 999,
+                maxHp: 999,
+                alive: true,
+                isGrammarCore: false,
+                unbreakable: true,
+                oscillate: false,
+                color: '#4a5568'
+              });
+              continue;
+            }
+            // Oscillating bottom barrier row
+            if (r === 5) {
+              if (c !== 2 && c !== 4 && c !== 6) continue;
+              bbState.bricks.push({
+                x: sideMargin + c * (brickW + pad),
+                baseX: sideMargin + c * (brickW + pad),
+                y: topOffset + r * (brickH + pad) + 6,
+                w: brickW,
+                h: brickH,
+                row: r,
+                hp: 2,
+                maxHp: 2,
+                alive: true,
+                isGrammarCore: false,
+                unbreakable: false,
+                oscillate: true,
+                color: '#ff007f'
+              });
+              continue;
+            }
+            const isCore = coreCoords.includes(`${r}-${c}`);
+            const isHeavy = !isCore && (r === 0 || r === 1) && (c >= 3 && c <= 5);
+            const isArmored = !isCore && !isHeavy && (r % 2 === 0);
+            const hpVal = isHeavy ? 3 : (isArmored ? 2 : 1);
+            bbState.bricks.push({
+              x: sideMargin + c * (brickW + pad),
+              baseX: sideMargin + c * (brickW + pad),
+              y: topOffset + r * (brickH + pad),
+              w: brickW,
+              h: brickH,
+              row: r,
+              hp: hpVal,
+              maxHp: hpVal,
+              alive: true,
+              isGrammarCore: isCore,
+              unbreakable: false,
+              oscillate: false,
+              color: isCore ? '#ffd700' : (isHeavy ? '#ff2a55' : (isArmored ? '#9d00ff' : '#00f3ff'))
+            });
+          }
+        }
+      }
+    }
+
+    function resetOrbToPaddle() {
+      const canvas = document.getElementById('breakerCanvas');
+      const cfg = getStageConfig(bbState.level);
+      bbState.ballLaunched = false;
+      bbState.paddleWidth = Math.min(200, Math.max(115, canvas.width * cfg.paddleRatio));
+      bbState.paddleX = Math.max(0, Math.min(canvas.width - bbState.paddleWidth, bbState.paddleX));
+      bbState.ballX = bbState.paddleX + bbState.paddleWidth / 2;
+      bbState.ballY = canvas.height - 46;
+
+      const angle = (Math.random() > 0.5 ? 1 : -1) * (Math.PI / 5);
+      bbState.ballVX = cfg.ballSpeed * Math.sin(angle);
+      bbState.ballVY = -cfg.ballSpeed * Math.cos(angle);
+    }
+
+    function startBreakerGame(startStage = 1) {
+      resizeBreakerCanvas();
+      const canvas = document.getElementById('breakerCanvas');
+      bbState.running = true;
+      bbState.victory = false;
+      bbState.pausedForQuiz = false;
+      bbState.score = 0;
+      bbState.level = startStage;
+      bbState.lives = 3;
+      const cfg = getStageConfig(bbState.level);
+      bbState.paddleWidth = Math.min(200, Math.max(115, canvas.width * cfg.paddleRatio));
+      bbState.paddleX = (canvas.width - bbState.paddleWidth) / 2;
+      bbState.particles = [];
+      bbState.shockwaveTimer = 0;
+      bbState.oscTime = 0;
+      bbState.stageBannerTimer = 2.2;
+      bbState.stageBannerText = `STAGE ${cfg.num}: ${cfg.name}`;
+      document.getElementById('breakerQuizOverlay').classList.remove('active');
+
+      buildBreakerBricks();
+      resetOrbToPaddle();
+      updateBreakerHUD();
+      playSuccessChime();
+      bbState.lastFrameTime = performance.now();
+      requestAnimationFrame(breakerGameLoop);
+    }
+
+    function cycleBreakerStage() {
+      const nextStage = (bbState.level % BREAKER_STAGES.length) + 1;
+      if (!bbState.running) {
+        startBreakerGame(nextStage);
+        return;
+      }
+      bbState.level = nextStage;
+      const cfg = getStageConfig(bbState.level);
+      bbState.stageBannerTimer = 2.2;
+      bbState.stageBannerText = `STAGE ${cfg.num}: ${cfg.name}`;
+      buildBreakerBricks();
+      resetOrbToPaddle();
+      updateBreakerHUD();
+      playTone(580, 'triangle', 0.12, 0.1);
+      showToast(`WARPED TO STAGE ${cfg.num}: ${cfg.name}`);
+    }
+
+    function launchBreakerBall() {
+      if (!bbState.running || bbState.pausedForQuiz) return;
+      if (!bbState.ballLaunched) {
+        bbState.ballLaunched = true;
+        playTone(640, 'square', 0.08, 0.09);
+      }
+    }
+
+    // Mouse / Touch drag support directly on Breaker Canvas
+    const breakerCanvasEl = document.getElementById('breakerCanvas');
+    breakerCanvasEl.addEventListener('mousemove', (e) => {
+      if (!bbState.running || bbState.pausedForQuiz) return;
+      const rect = breakerCanvasEl.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      bbState.paddleX = Math.max(0, Math.min(breakerCanvasEl.width - bbState.paddleWidth, mouseX - bbState.paddleWidth / 2));
+    });
+
+    breakerCanvasEl.addEventListener('click', () => {
+      if (bbState.running && !bbState.pausedForQuiz && !bbState.ballLaunched) {
+        launchBreakerBall();
+      }
+    });
+
+    function triggerBreakerQuizManual() {
+      if (!bbState.running) {
+        startBreakerGame(1);
+      }
+      if (!bbState.pausedForQuiz) {
+        openBreakerQuiz();
+      }
+    }
+
+    function openBreakerQuiz() {
+      bbState.pausedForQuiz = true;
+      const qObj = drawNextBreakerQuestion(bbState.level);
+
+      const tierNames = {
+        1: 'STAGE 1 CORE // PRESENT SIMPLE -> PAST SIMPLE & WILL -> WOULD',
+        2: 'STAGE 2 SHIELD // PRESENT CONTINUOUS -> PAST CONTINUOUS',
+        3: 'STAGE 3 MATRIX // SAID VS. TOLD & PRONOUN SHIFTS',
+        4: 'STAGE 4 FORTRESS // TIME & PLACE EXPRESSIONS',
+        5: 'STAGE 5 MAINFRAME // FULL MIXED TRANSFORMATIONS'
+      };
+      document.getElementById('bbQuizTierTag').textContent = tierNames[qObj.tier] || 'REPORTED SPEECH CORE';
+      document.getElementById('bbQuizQuestion').textContent = qObj.q;
+      const optsContainer = document.getElementById('bbQuizOptions');
+      optsContainer.innerHTML = '';
+
+      qObj.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt-btn';
+        btn.textContent = optText;
+        btn.onclick = () => resolveBreakerQuiz(idx === qObj.ans, qObj.exp);
+        optsContainer.appendChild(btn);
+      });
+
+      document.getElementById('breakerQuizOverlay').classList.add('active');
+      playTone(680, 'sine', 0.15, 0.1);
+    }
+
+    function resolveBreakerQuiz(isCorrect, explanation) {
+      document.getElementById('breakerQuizOverlay').classList.remove('active');
+      bbState.pausedForQuiz = false;
+      bbState.lastFrameTime = performance.now();
+
+      if (isCorrect) {
+        playSuccessChime();
+        bbState.score += 500;
+        if (bbState.lives < 5) bbState.lives++;
+        bbState.shockwaveTimer = 0.65;
+
+        // Cyber Shockwave shatters an entire row of remaining breakable bricks!
+        const aliveBreakable = bbState.bricks.filter((b) => b.alive && !b.unbreakable);
+        if (aliveBreakable.length > 0) {
+          const targetRow = aliveBreakable[0].row;
+          bbState.bricks.forEach((b) => {
+            if (b.alive && !b.unbreakable && b.row === targetRow) {
+              b.alive = false;
+              createExplosion(bbState.particles, b.x + b.w / 2, b.y + b.h / 2, '#ffd700');
+            }
+          });
+        }
+        showToast('CORRECT! CYBER SHOCKWAVE SHATTERED A FULL ROW (+500 PTS & +1 LIFE)');
+      } else {
+        playErrorBuzz();
+        bbState.lives--;
+        showToast('INCORRECT! ' + explanation);
+        if (bbState.lives <= 0) {
+          bbState.running = false;
+        }
+      }
+
+      if (bbState.score > bbState.highScore) {
+        bbState.highScore = bbState.score;
+      }
+      updateBreakerHUD();
+    }
+
+    function drawBreakerIdleScreen() {
+      const canvas = document.getElementById('breakerCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#04020a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = 'rgba(0, 243, 255, 0.25)';
+      ctx.lineWidth = 2;
+      for (let x = 0; x < canvas.width; x += 60) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 60) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = '#00f3ff';
+      ctx.font = 'bold 24px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('NEON TENSE BREAKER 2084 // 5 PROGRESSIVE STAGES', canvas.width / 2, canvas.height / 2 - 22);
+
+      ctx.fillStyle = '#ffd700';
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('PRESS "START / RESTART" BELOW TO ENTER STAGE 1', canvas.width / 2, canvas.height / 2 + 18);
+    }
+
+    function breakerGameLoop(now) {
+      if (!bbState.running) {
+        const canvas = document.getElementById('breakerCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(4, 2, 10, 0.9)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        if (bbState.victory) {
+          ctx.fillStyle = '#ffd700';
+          ctx.font = 'bold 26px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('ALL 5 STAGES CONQUERED! // FINAL SCORE: ' + bbState.score, canvas.width / 2, canvas.height / 2 - 18);
+          ctx.fillStyle = '#39ff14';
+          ctx.font = 'bold 18px sans-serif';
+          ctx.fillText('REPORTED SPEECH MAINFRAME MASTERED // CLICK "START / RESTART" TO REPLAY', canvas.width / 2, canvas.height / 2 + 22);
+        } else {
+          ctx.fillStyle = '#ff2a55';
+          ctx.font = 'bold 26px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('ARENA OVER // FINAL SCORE: ' + bbState.score, canvas.width / 2, canvas.height / 2 - 16);
+          ctx.fillStyle = '#00f3ff';
+          ctx.font = 'bold 18px sans-serif';
+          ctx.fillText('CLICK "START / RESTART" TO PLAY AGAIN', canvas.width / 2, canvas.height / 2 + 22);
+        }
+        return;
+      }
+
+      if (bbState.pausedForQuiz) {
+        requestAnimationFrame(breakerGameLoop);
+        return;
+      }
+
+      const dt = Math.min((now - bbState.lastFrameTime) / 1000, 0.05);
+      bbState.lastFrameTime = now;
+      bbState.oscTime += dt;
+
+      const canvas = document.getElementById('breakerCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // 1. Update Oscillating Shield Bricks (Stages 4 & 5)
+      bbState.bricks.forEach((br) => {
+        if (br.alive && br.oscillate) {
+          const offset = Math.sin(bbState.oscTime * 2.4) * 42;
+          br.x = Math.max(12, Math.min(canvas.width - br.w - 12, br.baseX + offset));
+        }
+      });
+
+      // 2. Move Cyber Paddle
+      let pMove = bbState.paddleMoveDir;
+      if (keysPressed['ArrowLeft'] || keysPressed['KeyA']) pMove = -1;
+      if (keysPressed['ArrowRight'] || keysPressed['KeyD']) pMove = 1;
+      bbState.paddleX += pMove * 580 * dt;
+      bbState.paddleX = Math.max(0, Math.min(canvas.width - bbState.paddleWidth, bbState.paddleX));
+
+      // 3. Move Plasma Orb
+      if (!bbState.ballLaunched) {
+        bbState.ballX = bbState.paddleX + bbState.paddleWidth / 2;
+        bbState.ballY = canvas.height - 46;
+      } else {
+        bbState.ballX += bbState.ballVX * dt;
+        bbState.ballY += bbState.ballVY * dt;
+
+        // Wall bounces
+        if (bbState.ballX - bbState.ballRadius < 0) {
+          bbState.ballX = bbState.ballRadius;
+          bbState.ballVX = Math.abs(bbState.ballVX);
+          playTone(380, 'triangle', 0.04, 0.06);
+        } else if (bbState.ballX + bbState.ballRadius > canvas.width) {
+          bbState.ballX = canvas.width - bbState.ballRadius;
+          bbState.ballVX = -Math.abs(bbState.ballVX);
+          playTone(380, 'triangle', 0.04, 0.06);
+        }
+
+        if (bbState.ballY - bbState.ballRadius < 0) {
+          bbState.ballY = bbState.ballRadius;
+          bbState.ballVY = Math.abs(bbState.ballVY);
+          playTone(420, 'triangle', 0.04, 0.06);
+        }
+
+        // Paddle bounce
+        const paddleTop = canvas.height - 34;
+        if (
+          bbState.ballVY > 0 &&
+          bbState.ballY + bbState.ballRadius >= paddleTop &&
+          bbState.ballY - bbState.ballRadius <= paddleTop + bbState.paddleHeight &&
+          bbState.ballX >= bbState.paddleX - 8 &&
+          bbState.ballX <= bbState.paddleX + bbState.paddleWidth + 8
+        ) {
+          const hitRatio = (bbState.ballX - (bbState.paddleX + bbState.paddleWidth / 2)) / (bbState.paddleWidth / 2);
+          const speed = Math.hypot(bbState.ballVX, bbState.ballVY);
+          const bounceAngle = hitRatio * (Math.PI / 3);
+          bbState.ballVX = speed * Math.sin(bounceAngle);
+          bbState.ballVY = -Math.abs(speed * Math.cos(bounceAngle));
+          bbState.ballY = paddleTop - bbState.ballRadius;
+          playTone(520, 'square', 0.05, 0.08);
+        }
+
+        // Bottom pit check
+        if (bbState.ballY - bbState.ballRadius > canvas.height) {
+          bbState.lives--;
+          playErrorBuzz();
+          if (bbState.lives <= 0) {
+            bbState.running = false;
+          } else {
+            resetOrbToPaddle();
+          }
+        }
+
+        // Brick collisions with side-aware reflection
+        for (let i = 0; i < bbState.bricks.length; i++) {
+          const br = bbState.bricks[i];
+          if (!br.alive) continue;
+
+          if (
+            bbState.ballX + bbState.ballRadius > br.x &&
+            bbState.ballX - bbState.ballRadius < br.x + br.w &&
+            bbState.ballY + bbState.ballRadius > br.y &&
+            bbState.ballY - bbState.ballRadius < br.y + br.h
+          ) {
+            const overlapLeft = (bbState.ballX + bbState.ballRadius) - br.x;
+            const overlapRight = (br.x + br.w) - (bbState.ballX - bbState.ballRadius);
+            const overlapTop = (bbState.ballY + bbState.ballRadius) - br.y;
+            const overlapBottom = (br.y + br.h) - (bbState.ballY - bbState.ballRadius);
+            const minOverlap = Math.min(overlapLeft, overlapRight, overlapTop, overlapBottom);
+
+            if (minOverlap === overlapLeft || minOverlap === overlapRight) {
+              bbState.ballVX = -bbState.ballVX;
+            } else {
+              bbState.ballVY = -bbState.ballVY;
+            }
+
+            if (br.unbreakable) {
+              playTone(210, 'triangle', 0.06, 0.08);
+              createExplosion(bbState.particles, bbState.ballX, bbState.ballY, '#94a3b8');
+              break;
+            }
+
+            br.hp--;
+            if (br.hp <= 0) {
+              br.alive = false;
+              bbState.score += br.isGrammarCore ? 250 : (100 * br.maxHp);
+              createExplosion(bbState.particles, br.x + br.w / 2, br.y + br.h / 2, br.color);
+              playTone(br.isGrammarCore ? 760 : 480, 'sawtooth', 0.08, 0.09);
+
+              if (br.isGrammarCore) {
+                updateBreakerHUD();
+                openBreakerQuiz();
+                requestAnimationFrame(breakerGameLoop);
+                return;
+              }
+            } else {
+              // Armored brick cracked
+              bbState.score += 50;
+              createExplosion(bbState.particles, bbState.ballX, bbState.ballY, '#ffffff');
+              playTone(340, 'square', 0.06, 0.08);
+            }
+            break;
+          }
+        }
+      }
+
+      // 4. Check Stage Cleared (all breakable bricks destroyed)
+      const remainingBreakable = bbState.bricks.filter((b) => b.alive && !b.unbreakable).length;
+      if (remainingBreakable === 0 && bbState.running) {
+        bbState.score += 500;
+        playSuccessChime();
+
+        if (bbState.level < BREAKER_STAGES.length) {
+          bbState.level++;
+          const nextCfg = getStageConfig(bbState.level);
+          bbState.stageBannerTimer = 2.6;
+          bbState.stageBannerText = `STAGE CLEARED! +500 PTS // STAGE ${nextCfg.num}: ${nextCfg.name}`;
+          buildBreakerBricks();
+          resetOrbToPaddle();
+          showToast(`STAGE CLEARED! BONUS +500 PTS — ENTERING STAGE ${nextCfg.num}: ${nextCfg.name}`);
+        } else {
+          bbState.victory = true;
+          bbState.running = false;
+          showToast('VICTORY! YOU CONQUERED ALL 5 REPORTED SPEECH STAGES!');
+        }
+      }
+
+      if (bbState.score > bbState.highScore) {
+        bbState.highScore = bbState.score;
+      }
+      updateBreakerHUD();
+
+      // Update Timers & Particles
+      if (bbState.shockwaveTimer > 0) bbState.shockwaveTimer -= dt;
+      if (bbState.stageBannerTimer > 0) bbState.stageBannerTimer -= dt;
+      for (let p = bbState.particles.length - 1; p >= 0; p--) {
+        const pt = bbState.particles[p];
+        pt.x += pt.vx * dt;
+        pt.y += pt.vy * dt;
+        pt.life -= dt;
+        if (pt.life <= 0) bbState.particles.splice(p, 1);
+      }
+
+      // 5. Render Arena
+      ctx.fillStyle = '#04020a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Perspective synth grid
+      ctx.strokeStyle = 'rgba(157, 0, 255, 0.18)';
+      ctx.lineWidth = 1.5;
+      for (let x = 0; x < canvas.width; x += 64) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < canvas.height; y += 64) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+
+      // Cyber Shockwave flash
+      if (bbState.shockwaveTimer > 0) {
+        ctx.fillStyle = 'rgba(255, 215, 0, 0.25)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Draw Bricks (Standard, Armored Multi-Hit, Unbreakable Obsidian, Gold Grammar Cores)
+      bbState.bricks.forEach((br) => {
+        if (!br.alive) return;
+
+        ctx.fillStyle = br.color;
+        if (!br.unbreakable && br.maxHp > 1 && br.hp < br.maxHp) {
+          ctx.globalAlpha = 0.65;
+        }
+        ctx.fillRect(br.x, br.y, br.w, br.h);
+        ctx.globalAlpha = 1.0;
+
+        ctx.strokeStyle = br.isGrammarCore ? '#ffffff' : (br.unbreakable ? '#cbd5e1' : '#070514');
+        ctx.lineWidth = br.isGrammarCore || br.unbreakable ? 2.5 : 2;
+        ctx.strokeRect(br.x, br.y, br.w, br.h);
+
+        // Crack line on damaged multi-hit bricks
+        if (!br.unbreakable && br.maxHp > 1 && br.hp < br.maxHp) {
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.moveTo(br.x + br.w * 0.25, br.y + 3);
+          ctx.lineTo(br.x + br.w * 0.5, br.y + br.h * 0.55);
+          ctx.lineTo(br.x + br.w * 0.72, br.y + br.h - 3);
+          ctx.stroke();
+        }
+
+        if (br.isGrammarCore) {
+          ctx.fillStyle = '#070514';
+          ctx.font = 'bold 13px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('CORE', br.x + br.w / 2, br.y + br.h / 2 + 5);
+        } else if (br.unbreakable) {
+          ctx.fillStyle = '#e2e8f0';
+          ctx.font = 'bold 12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('WALL', br.x + br.w / 2, br.y + br.h / 2 + 4);
+        } else if (br.hp > 1) {
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 12px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(`x${br.hp}`, br.x + br.w / 2, br.y + br.h / 2 + 4);
+        }
+      });
+
+      // Draw Cyber Paddle
+      const pTop = canvas.height - 34;
+      ctx.fillStyle = '#00f3ff';
+      ctx.fillRect(bbState.paddleX, pTop, bbState.paddleWidth, bbState.paddleHeight);
+      ctx.strokeStyle = '#ff007f';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(bbState.paddleX, pTop, bbState.paddleWidth, bbState.paddleHeight);
+
+      // Draw Plasma Orb
+      ctx.beginPath();
+      ctx.arc(bbState.ballX, bbState.ballY, bbState.ballRadius, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#ffd700';
+      ctx.stroke();
+
+      // Stage Transition Banner Overlay
+      if (bbState.stageBannerTimer > 0) {
+        ctx.fillStyle = 'rgba(7, 5, 20, 0.82)';
+        ctx.fillRect(0, canvas.height / 2 - 36, canvas.width, 56);
+        ctx.strokeStyle = '#ffd700';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(10, canvas.height / 2 - 36, canvas.width - 20, 56);
+
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 20px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(bbState.stageBannerText, canvas.width / 2, canvas.height / 2 - 2);
+      } else if (!bbState.ballLaunched) {
+        ctx.fillStyle = '#ffd700';
+        ctx.font = 'bold 18px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('PRESS "LAUNCH ORB [SPACE]" OR CLICK ARENA', canvas.width / 2, canvas.height / 2 + 55);
+      }
+
+      // Draw Particles
+      bbState.particles.forEach((pt) => {
+        ctx.fillStyle = pt.color;
+        ctx.fillRect(pt.x, pt.y, 5, 5);
+      });
+
+      requestAnimationFrame(breakerGameLoop);
+    }
+
+    window.addEventListener('resize', () => {
+      if (document.getElementById('tab5').classList.contains('active')) {
+        resizeArcadeCanvas();
+      }
+      if (document.getElementById('tab9').classList.contains('active')) {
+        resizeBreakerCanvas();
+      }
+    });
+
+    // Initialize default canvas states on load
+    window.addEventListener('load', () => {
+      drawRouletteWheel();
+      resizeArcadeCanvas();
+      resizeBreakerCanvas();
+    });
+  </script>
+</body>
+</html>
